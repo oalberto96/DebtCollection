@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.glassy.salesmanager.Events.UserEvents;
 
-import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
 

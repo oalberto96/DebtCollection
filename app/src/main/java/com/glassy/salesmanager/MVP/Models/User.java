@@ -8,6 +8,8 @@ import com.glassy.salesmanager.Events.UserEvents;
 
 public class User {
     final protected UserEvents events;
+    protected String first_name;
+    protected String last_name;
 
     protected User(UserEvents events) {
 

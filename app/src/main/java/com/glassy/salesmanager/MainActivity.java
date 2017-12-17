@@ -9,11 +9,9 @@ import com.glassy.salesmanager.MVP.Models.User;
 import com.glassy.salesmanager.MVP.Presenters.UserPresenter;
 import com.glassy.salesmanager.MVP.Views.UserView;
 
-import org.greenrobot.eventbus.EventBus;
 
 public class MainActivity extends AppCompatActivity implements UserView {
     private UserPresenter presenter;
-    private EventBus bus = new EventBus();
 
 
     @Override

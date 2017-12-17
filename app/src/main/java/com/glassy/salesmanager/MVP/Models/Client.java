@@ -7,7 +7,9 @@ import com.glassy.salesmanager.Events.UserEvents;
  */
 
 public class Client extends User {
+
     public Client(UserEvents events) {
         super(events);
     }
+
 }
