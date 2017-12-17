@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference;
  * Created by glassy on 12/16/17.
  */
 
-public interface UserView {
+public interface SellerView {
     public void testFailure();
     public void testSuccess();
 }

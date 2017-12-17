@@ -8,9 +8,4 @@ import com.glassy.salesmanager.Events.UserEvents;
 
 public class Seller extends User {
 
-    public Seller(UserEvents events) {
-        super(events);
-    }
-
-
 }
