@@ -5,23 +5,44 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.glassy.salesmanager.Events.UserEvents;
+import com.glassy.salesmanager.MVP.Models.Client;
+import com.glassy.salesmanager.MVP.Presenters.ClientPresenter;
+import com.glassy.salesmanager.MVP.Views.ClientView;
 import com.glassy.salesmanager.UI.ClientAdapter;
 
-public class ClientActivity extends AppCompatActivity {
-    private static final int NUM_LIST_ITEMS = 100;
+import java.util.ArrayList;
+
+public class ClientActivity extends AppCompatActivity implements ClientView{
+    private ClientPresenter presenter;
     private ClientAdapter clientAdapter;
     private RecyclerView clientList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
+        presenter = new ClientPresenter(this);
 
+
+    }
+
+    @Override
+    public void testFailure() {
+
+    }
+
+    @Override
+    public void testSuccess() {
+
+    }
+
+    @Override
+    public void loadListClient(ArrayList<Client> clients) {
         clientList = (RecyclerView) findViewById(R.id.rv_clients);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         clientList.setLayoutManager(layoutManager);
         clientList.setHasFixedSize(true);
-        clientAdapter = new ClientAdapter(NUM_LIST_ITEMS);
+        clientAdapter = new ClientAdapter(clients);
         clientList.setAdapter(clientAdapter);
-
     }
 }

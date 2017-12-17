@@ -8,4 +8,9 @@ import com.glassy.salesmanager.Events.UserEvents;
 
 public class Client extends User {
 
+    public Client(String first_name, String last_name) {
+        super(first_name,last_name);
+    }
+
+
 }

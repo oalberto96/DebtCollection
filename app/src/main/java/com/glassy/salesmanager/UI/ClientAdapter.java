@@ -7,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by glassy on 12/16/17.
@@ -15,11 +18,10 @@ import com.glassy.salesmanager.R;
 
 public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientViewHolder>{
 
-    private int m_number_items;
+    private ArrayList<Client> clients;
 
-    public ClientAdapter(int number_items){
-        m_number_items = number_items;
-
+    public ClientAdapter(ArrayList<Client> clients){
+        this.clients = clients;
     }
 
 
@@ -36,24 +38,28 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     @Override
     public void onBindViewHolder(ClientViewHolder holder, int position) {
-        holder.bind(position);
+        Client client = clients.get(position);
+        holder.bind(
+                client.getFirst_name(),
+                client.getLast_name()
+        );
 
     }
 
     @Override
     public int getItemCount() {
-        return m_number_items;
+        return clients.size();
     }
 
     public class ClientViewHolder extends RecyclerView.ViewHolder{
-        TextView item;
+        TextView tv_firstName;
         public ClientViewHolder(View itemView) {
             super(itemView);
-            item = (TextView) itemView.findViewById(R.id.tv_item_first_name);
+            tv_firstName = (TextView) itemView.findViewById(R.id.tv_item_first_name);
         }
 
-        void bind(int listIndex) {
-            item.setText(String.valueOf(listIndex));
+        void bind(String tv_firstName, String tv_lastName) {
+            this.tv_firstName.setText(tv_firstName + " " + tv_lastName);
         }
     }
 

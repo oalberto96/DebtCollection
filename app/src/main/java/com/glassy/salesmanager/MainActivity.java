@@ -6,19 +6,16 @@ import android.widget.Toast;
 
 import com.glassy.salesmanager.MVP.Models.Seller;
 import com.glassy.salesmanager.MVP.Models.User;
-import com.glassy.salesmanager.MVP.Presenters.UserPresenter;
-import com.glassy.salesmanager.MVP.Views.UserView;
 
-
-public class MainActivity extends AppCompatActivity implements UserView {
-    private UserPresenter presenter;
+public class MainActivity extends AppCompatActivity {
+    //private UserPresenter presenter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new UserPresenter(this);
+        //presenter = new UserPresenter(this);
 
     }
 
