@@ -1,16 +1,67 @@
 package com.glassy.salesmanager.MVP.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.StrictMode;
+
 import com.glassy.salesmanager.Events.UserEvents;
 
 /**
  * Created by glassy on 12/16/17.
  */
 
-public class Client extends User {
+public class Client extends User implements Parcelable {
+
+    private String address;
+    private String phoneNumber;
+    private String notes;
+    private String tin;
 
     public Client(String first_name, String last_name) {
         super(first_name,last_name);
     }
 
+    public Client(String first_name, String last_name, String address, String phoneNumber, String notes, String tin) {
+        super(first_name, last_name);
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
+        this.tin = tin;
+    }
 
+    protected Client(Parcel in) {
+        super(in.readString(),in.readString());
+        address = in.readString();
+        phoneNumber = in.readString();
+        notes = in.readString();
+        tin = in.readString();
+    }
+
+    public static final Creator<Client> CREATOR = new Creator<Client>() {
+        @Override
+        public Client createFromParcel(Parcel in) {
+            return new Client(in);
+        }
+
+        @Override
+        public Client[] newArray(int size) {
+            return new Client[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(super.first_name);
+        parcel.writeString(super.last_name);
+        parcel.writeString(address);
+        parcel.writeString(phoneNumber);
+        parcel.writeString(notes);
+        parcel.writeString(tin);
+
+    }
 }

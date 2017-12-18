@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.glassy.salesmanager.Events.UserEvents;
 import com.glassy.salesmanager.MVP.Models.Client;
@@ -24,6 +26,10 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
         presenter = new ClientPresenter(this);
 
 
+    }
+
+    public void onClickbtnNewClient(View view){
+        Toast.makeText(this,"New Client", Toast.LENGTH_SHORT).show();
     }
 
     @Override
