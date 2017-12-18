@@ -1,5 +1,6 @@
 package com.glassy.salesmanager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,8 +26,6 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
         presenter = new ClientPresenter(this);
-
-
     }
 
     public void onClickbtnNewClient(View view){
@@ -42,7 +41,7 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1 && resultCode == RESULT_OK){
             Client new_client = data.getParcelableExtra("newClient");
-            Toast.makeText(this,new_client.getFirst_name(), Toast.LENGTH_SHORT).show();
+            presenter.addNewClient(new_client);
 
         }
     }
@@ -65,5 +64,10 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
         clientList.setHasFixedSize(true);
         clientAdapter = new ClientAdapter(clients);
         clientList.setAdapter(clientAdapter);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }

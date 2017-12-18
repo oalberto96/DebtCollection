@@ -11,9 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DebtCollectionDBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "debtcollection";
+    public static final String DATABASE_NAME = "debtcollection.db";
 
-    private static final int DATABASE_VERSION = 0;
+    private static final int DATABASE_VERSION = 1;
 
     public DebtCollectionDBHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -21,15 +21,15 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        final String SQL_CREATE_DEBT_COLLECTION_DATABASE = "CREATE TABLE" +
-                DebtCollectionContract.Client.TABLE_NAME + " (" +
+        final String SQL_CREATE_DEBT_COLLECTION_DATABASE = "CREATE TABLE " +
+                DebtCollectionContract.Client.TABLE_NAME + " ( " +
                 DebtCollectionContract.Client._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 DebtCollectionContract.Client.COLUMN_FIRST_NAME + " TEXT NOT NULL, " +
                 DebtCollectionContract.Client.COLUMN_LAST_NAME + " TEXT, " +
                 DebtCollectionContract.Client.COLUMN_ADDRESS + " TEXT, " +
                 DebtCollectionContract.Client.COLUMN_PHONE_NUMBER + " TEXT, " +
                 DebtCollectionContract.Client.COLUMN_NOTES + " TEXT, " +
-                DebtCollectionContract.Client.COLUMN_TIN + " TEXT, " +
+                DebtCollectionContract.Client.COLUMN_TIN + " TEXT " +
                 ");";
 
         sqLiteDatabase.execSQL(SQL_CREATE_DEBT_COLLECTION_DATABASE);

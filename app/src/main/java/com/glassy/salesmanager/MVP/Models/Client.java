@@ -17,6 +17,22 @@ public class Client extends User implements Parcelable {
     private String notes;
     private String tin;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public String getTin() {
+        return tin;
+    }
+
     public Client(String first_name, String last_name) {
         super(first_name,last_name);
     }

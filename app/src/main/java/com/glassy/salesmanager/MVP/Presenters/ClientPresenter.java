@@ -1,5 +1,7 @@
 package com.glassy.salesmanager.MVP.Presenters;
 
+import android.content.Context;
+
 import com.glassy.salesmanager.Events.UserEvents;
 import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.MVP.Models.ClientModel;
@@ -16,14 +18,14 @@ public class ClientPresenter implements UserEvents{
     protected final ClientView view;
 
     public ClientPresenter(ClientView view) {
-        this.model = new ClientModel(this);
         this.view = view;
+        this.model = new ClientModel(this);
         model.loadClients();
     }
 
     @Override
-    public void SuccesEvent() {
-        view.testSuccess();
+    public void addClientEvent() {
+        model.loadClients();
     }
 
     @Override
@@ -33,7 +35,20 @@ public class ClientPresenter implements UserEvents{
 
     @Override
     public void loadListSeller(ArrayList<Client> clients) {
-        view.loadListClient(clients);
-
+        if(clients.size()>0){
+            view.loadListClient(clients);
+        }
     }
+
+    @Override
+    public void addNewClient(Client newClient) {
+        model.createClient(newClient);
+    }
+
+    @Override
+    public Context getAppContext() {
+        return view.getContext();
+    }
+
+
 }

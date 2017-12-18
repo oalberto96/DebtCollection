@@ -1,5 +1,6 @@
 package com.glassy.salesmanager.MVP.Views;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
@@ -18,4 +19,5 @@ public interface ClientView {
     public void testFailure();
     public void testSuccess();
     public void loadListClient(ArrayList<Client> clients);
+    public Context getContext();
 }

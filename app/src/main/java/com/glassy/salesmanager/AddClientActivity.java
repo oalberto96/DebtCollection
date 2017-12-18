@@ -44,5 +44,6 @@ public class AddClientActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("newClient",(Parcelable) newClient);
         setResult(RESULT_OK,intent);
+        onBackPressed();
     }
 }

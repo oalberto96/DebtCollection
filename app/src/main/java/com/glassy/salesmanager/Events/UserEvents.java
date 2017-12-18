@@ -1,5 +1,7 @@
 package com.glassy.salesmanager.Events;
 
+import android.content.Context;
+
 import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.MVP.Models.Seller;
 
@@ -10,7 +12,9 @@ import java.util.ArrayList;
  */
 
 public interface UserEvents {
-    public void SuccesEvent();
+    public void addClientEvent();
     public void FailEvent();
     public void loadListSeller(ArrayList<Client> clients);
+    public void addNewClient(Client newClient);
+    public Context getAppContext();
 }
