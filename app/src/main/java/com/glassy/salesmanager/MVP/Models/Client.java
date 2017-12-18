@@ -11,7 +11,7 @@ import com.glassy.salesmanager.Events.UserEvents;
  */
 
 public class Client extends User implements Parcelable {
-    private long id;
+    private int id;
     private String address;
     private String phoneNumber;
     private String notes;
@@ -33,7 +33,13 @@ public class Client extends User implements Parcelable {
         return tin;
     }
 
-    public void setId(long id) {this.id = id;}
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {this.id = id;}
+
 
     public Client(String first_name, String last_name) {
         super(first_name,last_name);

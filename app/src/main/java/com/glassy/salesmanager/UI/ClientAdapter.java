@@ -43,6 +43,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
                 client.getFirst_name(),
                 client.getLast_name()
         );
+        holder.itemView.setTag(client.getId());
 
     }
 

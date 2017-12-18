@@ -54,7 +54,7 @@ public class ClientModel {
 
     public void deleteClient(int id){
         String SQLScript = "DELETE FROM " + DebtCollectionContract.Client.TABLE_NAME +
-                "WHERE _id = " + id;
+                " WHERE _id = " + id;
         db.execSQL(SQLScript);
         events.addClientEvent();
     }
