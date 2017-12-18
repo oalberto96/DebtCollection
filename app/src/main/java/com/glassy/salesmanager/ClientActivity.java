@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
         presenter = new ClientPresenter(this);
+
     }
 
     public void onClickbtnNewClient(View view){
@@ -64,7 +66,22 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
         clientList.setHasFixedSize(true);
         clientAdapter = new ClientAdapter(clients);
         clientList.setAdapter(clientAdapter);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                int id = (int) viewHolder.itemView.getTag();
+                presenter.deleteClient(id);
+
+            }
+        }).attachToRecyclerView(clientList);
     }
+
+
 
     @Override
     public Context getContext() {

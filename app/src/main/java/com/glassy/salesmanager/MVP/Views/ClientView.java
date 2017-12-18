@@ -19,5 +19,6 @@ public interface ClientView {
     public void testFailure();
     public void testSuccess();
     public void loadListClient(ArrayList<Client> clients);
+
     public Context getContext();
 }

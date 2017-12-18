@@ -40,6 +40,10 @@ public class ClientPresenter implements UserEvents{
         }
     }
 
+    public void deleteClient(long id){
+
+    }
+
     @Override
     public void addNewClient(Client newClient) {
         model.createClient(newClient);

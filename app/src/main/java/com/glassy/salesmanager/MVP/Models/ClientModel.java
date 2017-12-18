@@ -52,6 +52,13 @@ public class ClientModel {
         events.addClientEvent();
     }
 
+    public void deleteClient(int id){
+        String SQLScript = "DELETE FROM " + DebtCollectionContract.Client.TABLE_NAME +
+                "WHERE _id = " + id;
+        db.execSQL(SQLScript);
+        events.addClientEvent();
+    }
+
     public ArrayList<Client> getClients(){
         ArrayList<Client> clients = new ArrayList<Client>();
         String query = "SELECT * FROM " +
@@ -60,6 +67,7 @@ public class ClientModel {
         if (cursor.getCount() > 0){
             while (cursor.moveToNext()){
                 clients.add(new Client(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Client._ID)),
                         cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_FIRST_NAME)),
                         cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_LAST_NAME)),
                         cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_ADDRESS)),
