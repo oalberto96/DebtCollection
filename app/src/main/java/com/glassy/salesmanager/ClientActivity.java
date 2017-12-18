@@ -1,5 +1,6 @@
 package com.glassy.salesmanager;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,7 +30,21 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
     }
 
     public void onClickbtnNewClient(View view){
-        Toast.makeText(this,"New Client", Toast.LENGTH_SHORT).show();
+        startActivityForResult(new Intent(
+                getApplicationContext(),
+                AddClientActivity.class),
+                1
+        );
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            Client new_client = data.getParcelableExtra("newClient");
+            Toast.makeText(this,new_client.getFirst_name(), Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     @Override
