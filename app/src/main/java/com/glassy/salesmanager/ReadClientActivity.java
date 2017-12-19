@@ -2,6 +2,7 @@ package com.glassy.salesmanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,8 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
     TextView tvPhoneNumber;
     TextView tvTIN;
     TextView tvNotes;
+    private Client client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,23 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
         presenter.readClient(clientId);
     }
 
+    public void onClickbtnUpdateClient(View view){
+        Intent intent = new Intent(
+                getApplicationContext(),
+                AddClientActivity.class);
+        intent.putExtra("mode","UPDATE");
+        intent.putExtra("client", (Parcelable) client);
+        startActivityForResult(intent,3);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 3 && resultCode == RESULT_OK){
+            Client new_client = data.getParcelableExtra("newClient");
+            presenter.updateClient(new_client);
+        }
+    }
+
     @Override
     public void loadListClient(ArrayList<Client> clients) {
 
@@ -55,6 +75,7 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
     }
 
     private void fillFormViews(Client client) {
+        this.client = client;
         tvFirstName.setText(client.getFirst_name());
         tvLastName.setText(client.getLast_name());
         tvAddress.setText(client.getAddress());

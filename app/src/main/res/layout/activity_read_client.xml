@@ -44,4 +44,10 @@
             android:layout_height="wrap_content"
             android:text="@string/notes"/>
     </ScrollView>
+    <Button
+        android:id="@+id/btn_update_client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit client"
+        android:onClick="onClickbtnUpdateClient"/>
 </LinearLayout>

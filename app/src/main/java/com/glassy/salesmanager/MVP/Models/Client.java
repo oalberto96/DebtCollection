@@ -64,6 +64,7 @@ public class Client extends User implements Parcelable {
 
     protected Client(Parcel in) {
         super(in.readString(),in.readString());
+        id = in.readInt();
         address = in.readString();
         phoneNumber = in.readString();
         notes = in.readString();
@@ -91,6 +92,7 @@ public class Client extends User implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(super.first_name);
         parcel.writeString(super.last_name);
+        parcel.writeInt(id);
         parcel.writeString(address);
         parcel.writeString(phoneNumber);
         parcel.writeString(notes);

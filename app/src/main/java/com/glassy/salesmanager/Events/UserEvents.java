@@ -18,4 +18,5 @@ public interface UserEvents {
     public void addNewClient(Client newClient);
     public Context getAppContext();
     void readClientSuccessEvent(Client client);
+    void updateClientSuccessEvent(int id);
 }

@@ -39,6 +39,10 @@ public class ClientPresenter implements UserEvents{
         }
     }
 
+    public void updateClient(Client client){
+        model.updateClient(client);
+    }
+
     public void deleteClient(int id){
         model.deleteClient(id);
     }
@@ -58,6 +62,11 @@ public class ClientPresenter implements UserEvents{
     @Override
     public void readClientSuccessEvent(Client client) {
         view.readClient(client);
+    }
+
+    @Override
+    public void updateClientSuccessEvent(int id) {
+        model.readClient(id);
     }
 
 

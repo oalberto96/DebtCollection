@@ -12,6 +12,7 @@ import com.glassy.salesmanager.MVP.Models.Client;
 
 public class AddClientActivity extends AppCompatActivity {
 
+    Client client;
     EditText etFirstName;
     EditText etLastName;
     EditText etAddress;
@@ -49,6 +50,7 @@ public class AddClientActivity extends AppCompatActivity {
                 case "UPDATE":
                     btnAddClient.setVisibility(View.INVISIBLE);
                     Client client = intent.getParcelableExtra("client");
+                    this.client = client;
                     fillFormViews(client);
             }
         }
@@ -79,6 +81,18 @@ public class AddClientActivity extends AppCompatActivity {
     }
 
     public void onClickbtnSaveClient(View view){
-
+        this.client = new Client(
+                client.getId(),
+                etFirstName.getText().toString(),
+                etLastName.getText().toString(),
+                etAddress.getText().toString(),
+                etPhoneNumber.getText().toString(),
+                etNotes.getText().toString(),
+                etTIN.getText().toString()
+        );
+        Intent intent = new Intent();
+        intent.putExtra("newClient",(Parcelable) this.client);
+        setResult(RESULT_OK,intent);
+        onBackPressed();
     }
 }

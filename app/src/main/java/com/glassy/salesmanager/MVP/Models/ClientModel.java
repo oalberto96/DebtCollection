@@ -118,4 +118,25 @@ public class ClientModel {
         return clients;
     }
 
+    public void updateClient(Client client) {
+        db = dbHelper.getWritableDatabase();
+        String dbInsert = "UPDATE " + DebtCollectionContract.Client.TABLE_NAME + " SET " +
+                DebtCollectionContract.Client.COLUMN_FIRST_NAME + " = " +
+                "\"" + client.getFirst_name() + "\", " +
+                DebtCollectionContract.Client.COLUMN_LAST_NAME + " = " +
+                "\"" + client.getLast_name() + "\", " +
+                DebtCollectionContract.Client.COLUMN_ADDRESS + " = " +
+                "\"" + client.getAddress()+ "\", " +
+                DebtCollectionContract.Client.COLUMN_PHONE_NUMBER + " = " +
+                "\"" + client.getPhoneNumber()+ "\", " +
+                DebtCollectionContract.Client.COLUMN_NOTES + " = " +
+                "\"" + client.getNotes() + "\", " +
+                DebtCollectionContract.Client.COLUMN_TIN + " = " +
+                "\"" + client.getTin() + "\" " +
+                "WHERE " + DebtCollectionContract.Client._ID + " = " +
+                client.getId() + ";";
+        db.execSQL(dbInsert);
+        db.close();
+        events.updateClientSuccessEvent(client.getId());
+    }
 }
