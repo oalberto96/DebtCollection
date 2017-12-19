@@ -10,7 +10,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Toast;
 
-import com.glassy.salesmanager.Events.UserEvents;
 import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.MVP.Presenters.ClientPresenter;
 import com.glassy.salesmanager.MVP.Views.ClientView;
@@ -18,7 +17,7 @@ import com.glassy.salesmanager.UI.ClientAdapter;
 
 import java.util.ArrayList;
 
-public class ClientActivity extends AppCompatActivity implements ClientView{
+public class ClientActivity extends AppCompatActivity implements ClientView, ClientAdapter.ListItemClickListener{
     private ClientPresenter presenter;
     private ClientAdapter clientAdapter;
     private RecyclerView clientList;
@@ -64,7 +63,7 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         clientList.setLayoutManager(layoutManager);
         clientList.setHasFixedSize(true);
-        clientAdapter = new ClientAdapter(clients);
+        clientAdapter = new ClientAdapter(clients, this);
         clientList.setAdapter(clientAdapter);
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -86,5 +85,10 @@ public class ClientActivity extends AppCompatActivity implements ClientView{
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void onItemClickListener(int id) {
+        Toast.makeText(this,"" + id, Toast.LENGTH_SHORT).show();
     }
 }
