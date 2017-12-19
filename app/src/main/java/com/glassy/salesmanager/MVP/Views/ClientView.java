@@ -16,9 +16,7 @@ import java.util.ArrayList;
  */
 
 public interface ClientView {
-    public void testFailure();
-    public void testSuccess();
     public void loadListClient(ArrayList<Client> clients);
-
+    public void readClient(Client client);
     public Context getContext();
 }

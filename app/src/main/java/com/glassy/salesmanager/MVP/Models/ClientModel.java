@@ -19,12 +19,13 @@ import java.util.ArrayList;
 public class ClientModel {
     final protected UserEvents events;
     private SQLiteDatabase db;
+    DebtCollectionDBHelper dbHelper;
 
     public ClientModel(UserEvents events) {
         this.events = events;
 
-        DebtCollectionDBHelper dbHelper = new DebtCollectionDBHelper(events.getAppContext());
-        db = dbHelper.getWritableDatabase();
+        dbHelper = new DebtCollectionDBHelper(events.getAppContext());
+
 
     }
 
@@ -33,6 +34,7 @@ public class ClientModel {
     }
 
     public void createClient(Client newClient){
+        db = dbHelper.getWritableDatabase();
         String dbInsert = "INSERT INTO " + DebtCollectionContract.Client.TABLE_NAME + " (" +
                 DebtCollectionContract.Client.COLUMN_FIRST_NAME + ", " +
                 DebtCollectionContract.Client.COLUMN_LAST_NAME + ", " +
@@ -49,17 +51,52 @@ public class ClientModel {
                 newClient.getTin() +
                 "\");";
         db.execSQL(dbInsert);
+        db.close();
         events.addClientEvent();
+
+    }
+
+    public void readClient(int id){
+        db = dbHelper.getWritableDatabase();
+
+        Client client;
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Client.TABLE_NAME +
+                " WHERE "+
+                DebtCollectionContract.Client._ID+" = " + id;
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            cursor.moveToNext();
+            client = new Client(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Client._ID)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_FIRST_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_LAST_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_ADDRESS)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_PHONE_NUMBER)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_NOTES)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_TIN))
+                );
+            db.close();
+            events.readClientSuccessEvent(client);
+
+
+        }
+        db.close();
+
+
     }
 
     public void deleteClient(int id){
+        db = dbHelper.getWritableDatabase();
         String SQLScript = "DELETE FROM " + DebtCollectionContract.Client.TABLE_NAME +
                 " WHERE _id = " + id;
         db.execSQL(SQLScript);
+        db.close();
         events.addClientEvent();
     }
 
     public ArrayList<Client> getClients(){
+        db = dbHelper.getWritableDatabase();
         ArrayList<Client> clients = new ArrayList<Client>();
         String query = "SELECT * FROM " +
                 DebtCollectionContract.Client.TABLE_NAME+";";
@@ -77,6 +114,7 @@ public class ClientModel {
                 ));
             }
         }
+        db.close();
         return clients;
     }
 

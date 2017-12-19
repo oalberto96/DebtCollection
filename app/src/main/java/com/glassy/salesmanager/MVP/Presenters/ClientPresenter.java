@@ -30,7 +30,6 @@ public class ClientPresenter implements UserEvents{
 
     @Override
     public void FailEvent() {
-        view.testFailure();
     }
 
     @Override
@@ -44,6 +43,8 @@ public class ClientPresenter implements UserEvents{
         model.deleteClient(id);
     }
 
+    public void readClient(int id){ model.readClient(id);}
+
     @Override
     public void addNewClient(Client newClient) {
         model.createClient(newClient);
@@ -52,6 +53,11 @@ public class ClientPresenter implements UserEvents{
     @Override
     public Context getAppContext() {
         return view.getContext();
+    }
+
+    @Override
+    public void readClientSuccessEvent(Client client) {
+        view.readClient(client);
     }
 
 

@@ -17,4 +17,5 @@ public interface UserEvents {
     public void loadListSeller(ArrayList<Client> clients);
     public void addNewClient(Client newClient);
     public Context getAppContext();
+    void readClientSuccessEvent(Client client);
 }

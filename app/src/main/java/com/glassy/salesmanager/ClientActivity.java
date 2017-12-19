@@ -21,6 +21,7 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
     private ClientPresenter presenter;
     private ClientAdapter clientAdapter;
     private RecyclerView clientList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +31,11 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
     }
 
     public void onClickbtnNewClient(View view){
-        startActivityForResult(new Intent(
+        Intent intent = new Intent(
                 getApplicationContext(),
-                AddClientActivity.class),
-                1
-        );
-
+                AddClientActivity.class);
+        intent.putExtra("mode","CREATE");
+        startActivityForResult(intent,1);
     }
 
     @Override
@@ -43,19 +43,9 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
         if(requestCode == 1 && resultCode == RESULT_OK){
             Client new_client = data.getParcelableExtra("newClient");
             presenter.addNewClient(new_client);
-
         }
     }
 
-    @Override
-    public void testFailure() {
-
-    }
-
-    @Override
-    public void testSuccess() {
-
-    }
 
     @Override
     public void loadListClient(ArrayList<Client> clients) {
@@ -80,7 +70,10 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
         }).attachToRecyclerView(clientList);
     }
 
+    @Override
+    public void readClient(Client client) {
 
+    }
 
     @Override
     public Context getContext() {
@@ -89,6 +82,11 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
 
     @Override
     public void onItemClickListener(int id) {
+        Intent intent = new Intent(
+                this,
+                ReadClientActivity.class);
+        intent.putExtra("clientId",id);
+        startActivity(intent);
         Toast.makeText(this,"" + id, Toast.LENGTH_SHORT).show();
     }
 }
