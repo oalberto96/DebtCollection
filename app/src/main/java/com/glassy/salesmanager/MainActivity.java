@@ -11,8 +11,6 @@ import com.glassy.salesmanager.MVP.Models.Seller;
 import com.glassy.salesmanager.MVP.Models.User;
 
 public class MainActivity extends AppCompatActivity {
-    //private UserPresenter presenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickbtnProduct(View view){
-
+        startActivity(new Intent(
+                this,
+                ProductActivity.class
+        ));
     }
 
     public void onClickbtnSale(View view){
