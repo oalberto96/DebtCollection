@@ -25,7 +25,7 @@ public class SaleModel {
     }
 
     public void loadProductsList(){
-        events.loadProductsList(getProducts());
+        events.loadProductsList(getSales());
     }
 
     public void saleProduct(Sale sale){
@@ -36,7 +36,7 @@ public class SaleModel {
         //sql
     }
 
-    public ArrayList<Sale> getProducts(){
+    public ArrayList<Sale> getSales(){
         ArrayList<Sale> sales = new ArrayList<Sale>();
         return sales;
     }
