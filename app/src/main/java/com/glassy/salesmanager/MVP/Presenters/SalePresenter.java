@@ -25,17 +25,17 @@ public class SalePresenter implements SaleEvents {
     public SalePresenter(SaleView view) {
         this.view = view;
         this.model = new SaleModel(this);
-        model.loadProductsList();
+        model.loadSaleList();
     }
 
     @Override
-    public void loadProductsList(ArrayList<Sale> sales) {
+    public void loadSalesList(ArrayList<Sale> sales) {
         view.loadSaleList(sales);
     }
 
     @Override
-    public void loadProducts() {
-        model.loadProductsList();
+    public void loadSales() {
+        model.loadSaleList();
     }
 
 
@@ -43,6 +43,16 @@ public class SalePresenter implements SaleEvents {
     @Override
     public void loadSale(Sale sale) {
 
+    }
+
+    @Override
+    public void loadProducts() {
+        model.loadProducts();
+    }
+
+    @Override
+    public void loadProductsSucces(ArrayList<Product> products) {
+        view.loadProductsSuccess(products);
     }
 
     @Override
@@ -61,7 +71,7 @@ public class SalePresenter implements SaleEvents {
 
     @Override
     public void addNewProductSuccess() {
-        model.loadProductsList();
+        model.loadSaleList();
     }
 
     @Override

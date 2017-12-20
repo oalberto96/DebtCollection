@@ -25,8 +25,35 @@ public class SaleModel {
         dbHelper = new DebtCollectionDBHelper(events.getContext());
     }
 
-    public void loadProductsList(){
-        events.loadProductsList(getSales());
+    public void loadSaleList(){
+        events.loadSalesList(getSales());
+    }
+
+    public void loadProducts(){
+        events.loadProductsSucces(getProducts());
+    }
+
+    public ArrayList<Product> getProducts(){
+        ArrayList<Product> products = new ArrayList<Product>();
+        db = dbHelper.getWritableDatabase();
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Product.TABLE_NAME+";";
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            while (cursor.moveToNext()){
+                products.add(new Product(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Product._ID)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_NAME)),
+                        cursor.getFloat(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_PRICE)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_COLOR)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_SIZE)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_MATERIAL))
+                ));
+            }
+        }
+        db.close();
+        return products;
+
     }
 
     public void loadClients(){

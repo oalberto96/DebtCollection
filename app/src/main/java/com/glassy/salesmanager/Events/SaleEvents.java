@@ -13,9 +13,11 @@ import java.util.ArrayList;
  */
 
 public interface SaleEvents {
-    void loadProductsList(ArrayList<Sale> sales);
-    void loadProducts();
+    void loadSalesList(ArrayList<Sale> sales);
+    void loadSales();
     void loadSale(Sale sale);
+    void loadProducts();
+    void loadProductsSucces(ArrayList<Product> products);
     void loadClients();
     void loadClientsSuccess(ArrayList<Client> clients);
     void addNewSale(Sale newSale);

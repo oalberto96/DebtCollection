@@ -84,6 +84,11 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     }
 
     @Override
+    public void loadProductsSuccess(ArrayList<Product> products) {
+
+    }
+
+    @Override
     public Context getContext() {
         return this;
     }

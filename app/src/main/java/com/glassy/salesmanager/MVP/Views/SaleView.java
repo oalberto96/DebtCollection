@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public interface SaleView {
     void loadSaleList(ArrayList<Sale> sales);
     void readSale(Sale sale);
+
     void loadClientsSuccess(ArrayList<Client> clients);
+    void loadProductsSuccess(ArrayList<Product> products);
     Context getContext();
 }
