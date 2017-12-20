@@ -15,7 +15,9 @@ public class Product implements Parcelable {
     private String size;
     private String material;
 
+    public Product(){
 
+    }
 
     public Product(int id, String name, float price, String color, String size, String material) {
         this.id = id;

@@ -20,6 +20,7 @@
         <activity android:name=".AddClientActivity" />
         <activity android:name=".ReadClientActivity" />
         <activity android:name=".ProductActivity" />
+        <activity android:name=".SaleActivity" />
         <activity android:name=".AddProductActivity"></activity>
     </application>
 

@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickbtnSale(View view){
-
+        startActivity(new Intent(
+                this,
+                SaleActivity.class
+        ));
     }
 
 

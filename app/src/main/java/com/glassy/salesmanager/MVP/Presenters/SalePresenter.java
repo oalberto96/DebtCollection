@@ -29,7 +29,12 @@ public class SalePresenter implements SaleEvents {
 
     @Override
     public void loadProductsList(ArrayList<Sale> sales) {
+        view.loadSaleList(sales);
+    }
 
+    @Override
+    public void loadProducts() {
+        model.loadProductsList();
     }
 
     @Override
