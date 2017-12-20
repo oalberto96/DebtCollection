@@ -17,4 +17,13 @@ public class DebtCollectionContract {
         public static final String COLUMN_NOTES = "notes";
         public static final String COLUMN_TIN = "tin";
     }
+
+    public static final class Product implements BaseColumns{
+        public static final String TABLE_NAME = "product";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_PRICE = "price";
+        public static final String COLUMN_COLOR = "color";
+        public static final String COLUMN_SIZE = "size";
+        public static final String COLUMN_MATERIAL = "material";
+    }
 }
