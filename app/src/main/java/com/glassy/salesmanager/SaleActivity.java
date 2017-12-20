@@ -33,10 +33,10 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
         presenter = new SalePresenter(this);
     }
 
-    public void onClickbtnNewProduct(View view){
+    public void onClickbtnNewSale(View view){
         Intent intent = new Intent(
                 getApplicationContext(),
-                AddProductActivity.class);
+                AddSaleActivity.class);
         intent.putExtra("mode","CREATE");
         startActivityForResult(intent,1);
     }

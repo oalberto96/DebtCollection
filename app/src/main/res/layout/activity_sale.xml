@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_add_new_product"
         android:id="@+id/btn_new_product"
-        android:onClick="onClickbtnNewProduct"
+        android:onClick="onClickbtnNewSale"
         />
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/btn_new_product"
