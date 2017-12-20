@@ -44,6 +44,26 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
                         ");"
                 ;
         sqLiteDatabase.execSQL(SQL_CREATE_DEBT_COLLECTION_DATABASE_PRODUCTS);
+        final String SQL_CREATE_DEBT_COLLECTION_DATABASE_SALES =
+                "CREATE TABLE " +
+                        DebtCollectionContract.Sale.TABLE_NAME + " ( " +
+                        DebtCollectionContract.Sale._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DebtCollectionContract.Sale.COLUMN_NAME + " TEXT NOT NULL, " +
+                        DebtCollectionContract.Sale.COLUMN_DATE + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
+                        ");"
+                ;
+        sqLiteDatabase.execSQL(SQL_CREATE_DEBT_COLLECTION_DATABASE_SALES);
+
+        final String SQL_CREATE_DEBT_COLLECTION_DATABASE_SALES_PRODUCT =
+                "CREATE TABLE " +
+                        DebtCollectionContract.SaleProduct.TABLE_NAME + " ( " +
+                        DebtCollectionContract.SaleProduct._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DebtCollectionContract.SaleProduct.COLUMN_SALE_ID + " INTEGER NOT NULL, " +
+                        DebtCollectionContract.SaleProduct.COLUMN_PRODUCT_ID + " INTEGER NOT NULL, " +
+                        DebtCollectionContract.SaleProduct.COLUMN_PRODUCT_QUANTITY + " INTEGER " +
+                        ");"
+                ;
+        sqLiteDatabase.execSQL(SQL_CREATE_DEBT_COLLECTION_DATABASE_SALES_PRODUCT);
     }
 
     @Override

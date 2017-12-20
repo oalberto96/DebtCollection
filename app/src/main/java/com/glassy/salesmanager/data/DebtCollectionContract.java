@@ -26,4 +26,19 @@ public class DebtCollectionContract {
         public static final String COLUMN_SIZE = "size";
         public static final String COLUMN_MATERIAL = "material";
     }
+
+    public static final class Sale implements BaseColumns{
+        public static final String TABLE_NAME = "sale";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_DATE = "date";
+    }
+
+    public static final class SaleProduct implements BaseColumns{
+        public static final String TABLE_NAME = "saleProduct";
+        public static final String COLUMN_SALE_ID = "saleId";
+        public static final String COLUMN_PRODUCT_ID = "productId";
+        public static final String COLUMN_PRODUCT_QUANTITY = "productQuantity";
+
+    }
+
 }
