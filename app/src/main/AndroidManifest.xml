@@ -19,7 +19,8 @@
         <activity android:name=".ClientActivity" />
         <activity android:name=".AddClientActivity" />
         <activity android:name=".ReadClientActivity" />
-        <activity android:name=".ProductActivity"></activity>
+        <activity android:name=".ProductActivity" />
+        <activity android:name=".AddProductActivity"></activity>
     </application>
 
 </manifest>

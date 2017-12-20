@@ -25,7 +25,7 @@ public class ProductModel {
 
     public void createProduct(Product product){
         db = dbHelper.getWritableDatabase();
-        String dbInsert = "INSERT INTO " + DebtCollectionContract.Client.TABLE_NAME + " (" +
+        String dbInsert = "INSERT INTO " + DebtCollectionContract.Product.TABLE_NAME + " (" +
                 DebtCollectionContract.Product.COLUMN_NAME + ", " +
                 DebtCollectionContract.Product.COLUMN_PRICE + ", " +
                 DebtCollectionContract.Product.COLUMN_COLOR + ", " +

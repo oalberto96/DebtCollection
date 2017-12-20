@@ -30,18 +30,20 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
                 DebtCollectionContract.Client.COLUMN_PHONE_NUMBER + " TEXT, " +
                 DebtCollectionContract.Client.COLUMN_NOTES + " TEXT, " +
                 DebtCollectionContract.Client.COLUMN_TIN + " TEXT " +
-                "); " + "CREATE TABLE " +
-                DebtCollectionContract.Product.TABLE_NAME + " ( " +
-                DebtCollectionContract.Product._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DebtCollectionContract.Product.COLUMN_NAME + " TEXT NOT NULL, " +
-                DebtCollectionContract.Product.COLUMN_PRICE + " REAL, " +
-                DebtCollectionContract.Product.COLUMN_COLOR + " TEXT, " +
-                DebtCollectionContract.Product.COLUMN_SIZE + " TEXT, " +
-                DebtCollectionContract.Product.COLUMN_MATERIAL + " TEXT, " +
-                ");"
-                ;
-
+                "); ";
         sqLiteDatabase.execSQL(SQL_CREATE_DEBT_COLLECTION_DATABASE);
+        final String SQL_CREATE_DEBT_COLLECTION_DATABASE_PRODUCTS =
+                "CREATE TABLE " +
+                        DebtCollectionContract.Product.TABLE_NAME + " ( " +
+                        DebtCollectionContract.Product._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DebtCollectionContract.Product.COLUMN_NAME + " TEXT NOT NULL, " +
+                        DebtCollectionContract.Product.COLUMN_PRICE + " REAL, " +
+                        DebtCollectionContract.Product.COLUMN_COLOR + " TEXT, " +
+                        DebtCollectionContract.Product.COLUMN_SIZE + " TEXT, " +
+                        DebtCollectionContract.Product.COLUMN_MATERIAL + " TEXT " +
+                        ");"
+                ;
+        sqLiteDatabase.execSQL(SQL_CREATE_DEBT_COLLECTION_DATABASE_PRODUCTS);
     }
 
     @Override

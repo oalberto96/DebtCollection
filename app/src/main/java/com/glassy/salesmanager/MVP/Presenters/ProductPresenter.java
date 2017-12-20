@@ -18,8 +18,9 @@ public class ProductPresenter implements ProductEvents {
     protected final ProductView view;
 
     public ProductPresenter(ProductView view) {
-        this.model = new ProductModel(this);
         this.view = view;
+        this.model = new ProductModel(this);
+
     }
 
     @Override
@@ -39,6 +40,6 @@ public class ProductPresenter implements ProductEvents {
 
     @Override
     public Context getContext() {
-        return null;
+        return view.getContext();
     }
 }
