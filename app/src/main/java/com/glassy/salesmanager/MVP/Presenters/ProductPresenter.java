@@ -20,12 +20,12 @@ public class ProductPresenter implements ProductEvents {
     public ProductPresenter(ProductView view) {
         this.view = view;
         this.model = new ProductModel(this);
-
+        model.loadProductsList();
     }
 
     @Override
     public void loadProductsList(ArrayList<Product> products) {
-
+        view.loadProductsList(products);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProductPresenter implements ProductEvents {
 
     @Override
     public void addNewProductSuccess() {
-
+        model.loadProductsList();
     }
 
     @Override
