@@ -33,6 +33,10 @@ public class ProductPresenter implements ProductEvents {
         model.createProduct(newProduct);
     }
 
+    public void deleteClient(int id){
+        model.deleteClient(id);
+    }
+
     @Override
     public void addNewProductSuccess() {
         model.loadProductsList();

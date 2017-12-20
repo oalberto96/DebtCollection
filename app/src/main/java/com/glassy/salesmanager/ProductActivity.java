@@ -65,7 +65,7 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 int id = (int) viewHolder.itemView.getTag();
-                //Delete product
+                presenter.deleteClient(id);
             }
         }).attachToRecyclerView(productList);
     }

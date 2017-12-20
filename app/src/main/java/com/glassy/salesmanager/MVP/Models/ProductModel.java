@@ -49,6 +49,15 @@ public class ProductModel {
         events.addNewProductSuccess();
     }
 
+    public void deleteClient(int id){
+        db = dbHelper.getWritableDatabase();
+        String SQLScript = "DELETE FROM " + DebtCollectionContract.Product.TABLE_NAME +
+                " WHERE _id = " + id;
+        db.execSQL(SQLScript);
+        db.close();
+        events.addNewProductSuccess();
+    }
+
     public ArrayList<Product> getProducts(){
         ArrayList<Product> products = new ArrayList<Product>();
         db = dbHelper.getWritableDatabase();
