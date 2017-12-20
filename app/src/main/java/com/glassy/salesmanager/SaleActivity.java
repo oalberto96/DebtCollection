@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.MVP.Models.Product;
 import com.glassy.salesmanager.MVP.Models.Sale;
 import com.glassy.salesmanager.MVP.Presenters.ProductPresenter;
@@ -74,6 +75,11 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
 
     @Override
     public void readSale(Sale sale) {
+
+    }
+
+    @Override
+    public void loadClientsSuccess(ArrayList<Client> clients) {
 
     }
 

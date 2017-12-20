@@ -29,6 +29,33 @@ public class SaleModel {
         events.loadProductsList(getSales());
     }
 
+    public void loadClients(){
+        events.loadClientsSuccess(getClients());
+    }
+
+    public ArrayList<Client> getClients(){
+        db = dbHelper.getWritableDatabase();
+        ArrayList<Client> clients = new ArrayList<Client>();
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Client.TABLE_NAME+";";
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            while (cursor.moveToNext()){
+                clients.add(new Client(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Client._ID)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_FIRST_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_LAST_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_ADDRESS)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_PHONE_NUMBER)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_NOTES)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_TIN))
+                ));
+            }
+        }
+        db.close();
+        return clients;
+    }
+
     public void saleProduct(Sale sale){
         //Sql
     }

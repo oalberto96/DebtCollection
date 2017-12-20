@@ -16,6 +16,8 @@ public interface SaleEvents {
     void loadProductsList(ArrayList<Sale> sales);
     void loadProducts();
     void loadSale(Sale sale);
+    void loadClients();
+    void loadClientsSuccess(ArrayList<Client> clients);
     void addNewSale(Sale newSale);
     void addNewProductSuccess();
     Context getContext();

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.glassy.salesmanager.Events.ProductEvents;
 import com.glassy.salesmanager.Events.SaleEvents;
+import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.MVP.Models.Product;
 import com.glassy.salesmanager.MVP.Models.ProductModel;
 import com.glassy.salesmanager.MVP.Models.Sale;
@@ -37,9 +38,21 @@ public class SalePresenter implements SaleEvents {
         model.loadProductsList();
     }
 
+
+
     @Override
     public void loadSale(Sale sale) {
 
+    }
+
+    @Override
+    public void loadClients() {
+        model.loadClients();
+    }
+
+    @Override
+    public void loadClientsSuccess(ArrayList<Client> clients) {
+        view.loadClientsSuccess(clients);
     }
 
     @Override
