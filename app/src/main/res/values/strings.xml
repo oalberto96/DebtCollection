@@ -11,11 +11,16 @@
     <string name="notes">Notes</string>
     <string name="tin">Tax Identification Number</string>
 
+    <string name="btn_save_client">Add Client</string>
+    <string name="btn_add_new_client">Add New Client</string>
+
     <string name="product">Product</string>
     <string name="products">Products</string>
+
+    <string name="btn_save_product">Add Product</string>
+    <string name="btn_add_new_product">Add New Product</string>
 
     <string name="sale">Sale</string>
     <string name="sales">Sales</string>
 
-    <string name="btn_save_client">Add Client</string>
 </resources>

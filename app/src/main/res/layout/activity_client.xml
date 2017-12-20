@@ -5,7 +5,7 @@ android:layout_height="match_parent">
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new client"
+        android:text="@string/btn_add_new_client"
         android:id="@+id/btn_new_client"
         android:onClick="onClickbtnNewClient"
         />
