@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Sales Manager</string>
+    <string name="undo">Undo</string>
+
 
     <string name="client">Client</string>
     <string name="clients">Clients</string>
@@ -10,6 +12,7 @@
     <string name="phone_number">Phone number</string>
     <string name="notes">Notes</string>
     <string name="tin">Tax Identification Number</string>
+    <string name="client_deleted">Client deleted</string>
 
     <string name="btn_save_client">Add Client</string>
     <string name="btn_add_new_client">Add New Client</string>

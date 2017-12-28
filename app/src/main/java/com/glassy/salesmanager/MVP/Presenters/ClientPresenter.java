@@ -17,10 +17,32 @@ public class ClientPresenter implements UserEvents{
     protected final ClientModel model;
     protected final ClientView view;
 
+    protected ArrayList<Integer> deleteClientList;
+    
     public ClientPresenter(ClientView view) {
+        deleteClientList = new ArrayList<Integer>();
         this.view = view;
         this.model = new ClientModel(this);
         model.loadClients();
+    }
+
+    public void loadClients(){
+        model.loadClients();
+    }
+
+    public void addItemToList(int id){
+        deleteClientList.add(id);
+    }
+
+    public void deleteItemFromList(){
+        deleteClientList.remove(0);
+    }
+
+    public void cleanList() {
+        for (Integer id: deleteClientList) {
+            deleteClientList.remove(id);
+            deleteClient(id);
+        }
     }
 
     @Override
@@ -43,6 +65,8 @@ public class ClientPresenter implements UserEvents{
         model.updateClient(client);
     }
 
+    
+    
     public void deleteClient(int id){
         model.deleteClient(id);
     }
@@ -68,6 +92,7 @@ public class ClientPresenter implements UserEvents{
     public void updateClientSuccessEvent(int id) {
         model.readClient(id);
     }
+
 
 
 }

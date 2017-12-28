@@ -2,6 +2,8 @@ package com.glassy.salesmanager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -64,12 +66,30 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 int id = (int) viewHolder.itemView.getTag();
-                presenter.deleteClient(id);
-
+                showDeleteSnackbar(id);
             }
         }).attachToRecyclerView(clientList);
     }
 
+    public void showDeleteSnackbar(final int id){
+        presenter.addItemToList(id);
+        Snackbar.make(findViewById(R.id.client_activity_layout),
+                R.string.client_deleted,
+                Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        presenter.loadClients();
+                        presenter.deleteItemFromList();
+                    }
+                }).addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+            @Override
+            public void onDismissed(Snackbar transientBottomBar, int event) {
+                super.onDismissed(transientBottomBar, event);
+                presenter.cleanList();
+            }
+        }).show();
+    }
     @Override
     public void readClient(Client client) {
 
