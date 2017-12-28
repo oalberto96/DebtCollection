@@ -1,65 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.glassy.salesmanager.AddClientActivity">
-    <EditText
-        android:id="@+id/et_first_name"
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/first_name"/>
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.glassy.salesmanager.AddClientActivity">
 
-    <EditText
-        android:id="@+id/et_last_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/last_name"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/address"/>
+            <EditText
+                android:id="@+id/et_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/first_name"
+                android:inputType="textCapWords"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/phone_number"/>
-    <EditText
-        android:id="@+id/et_tin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tin"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/et_notes"
-            android:layout_width="wrap_content"
+            android:id="@+id/et_last_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/notes"/>
-    </ScrollView>
+            android:hint="@string/last_name"
+            android:inputType="textCapWords"/>
 
-    <Button
-        android:id="@+id/btn_add_client"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_save_client"
-        android:onClick="onClickbtnAddClient"/>
-    <Button
-        android:id="@+id/btn_save_client"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_save_client"
-        android:onClick="onClickbtnSaveClient"/>
+        </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address"
+            android:inputType=""/>
 
+        </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:inputType="phone"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_tin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/tin"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notes"/>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btn_add_client"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save_client"
+            android:onClick="onClickbtnAddClient"
+            android:layout_gravity="bottom"/>
+        <Button
+            android:id="@+id/btn_save_client"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save_client"
+            android:onClick="onClickbtnSaveClient"
+            android:gravity="bottom"/>
+
+    </LinearLayout>
+</ScrollView>
