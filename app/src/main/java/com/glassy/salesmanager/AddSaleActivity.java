@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.glassy.salesmanager.MVP.Models.Client;
 import com.glassy.salesmanager.MVP.Models.Product;
@@ -35,7 +37,6 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         setContentView(R.layout.activity_add_sale);
         presenter = new SalePresenter(this);
         presenter.loadClients();
-        presenter.loadProducts();
     }
 
 
@@ -49,6 +50,10 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
 
     }
 
+    public void onClickbtnAddProduct(View view){
+        presenter.loadProducts();
+    }
+
     @Override
     public void loadClientsSuccess(ArrayList<Client> clients) {
         populateClientList(clients);
@@ -56,7 +61,19 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
 
     @Override
     public void loadProductsSuccess(ArrayList<Product> products) {
-        populateProductList(products);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        ArrayList<String> nameProduct = new ArrayList<String>();
+        for(Product product: products){
+            nameProduct.add( product.getName());
+        }
+        builder.setTitle(getResources().getString(R.string.select_product));
+        builder.setItems(nameProduct.toArray(new CharSequence[nameProduct.size()]),new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getContext(),"" + which, Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
     }
 
     public void populateProductList(ArrayList<Product> products){
