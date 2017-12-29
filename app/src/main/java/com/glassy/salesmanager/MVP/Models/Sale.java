@@ -23,6 +23,10 @@ public class Sale implements Parcelable {
 
     protected Date dateSale;
 
+    public Sale(){
+        products = new ArrayList<>();
+    }
+
     public Sale(String name, Client client, ArrayList<Product> products, ArrayList<Integer> product_quantity, Date dateSale) {
         this.name = name;
         this.client = client;
@@ -80,5 +84,13 @@ public class Sale implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeLong(dateSale.getTime());
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 }

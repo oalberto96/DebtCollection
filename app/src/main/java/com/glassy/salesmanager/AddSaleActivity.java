@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.glassy.salesmanager.MVP.Models.Client;
@@ -26,8 +27,10 @@ import java.util.HashMap;
 public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductAdapter.ListItemClickListener{
 
     SalePresenter presenter;
-
+    RecyclerView productList;
+    ProductAdapter productAdapter;
     Spinner s_clientList;
+    TextView tv_total;
 
     HashMap<Integer, String> s_map;
 
@@ -37,6 +40,8 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         setContentView(R.layout.activity_add_sale);
         presenter = new SalePresenter(this);
         presenter.loadClients();
+        tv_total = (TextView) findViewById(R.id.tv_total);
+        initRecyclerView(presenter.getProducts());
     }
 
 
@@ -50,6 +55,11 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
 
     }
 
+    @Override
+    public void printTotal(float total) {
+        tv_total.setText(String.valueOf(total));
+    }
+
     public void onClickbtnAddProduct(View view){
         presenter.loadProducts();
     }
@@ -60,29 +70,36 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     }
 
     @Override
-    public void loadProductsSuccess(ArrayList<Product> products) {
+    public void loadProductsSuccess(final ArrayList<Product> products) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        ArrayList<String> nameProduct = new ArrayList<String>();
+        ArrayList<String> nameProduct = new ArrayList<>();
         for(Product product: products){
             nameProduct.add( product.getName());
         }
         builder.setTitle(getResources().getString(R.string.select_product));
         builder.setItems(nameProduct.toArray(new CharSequence[nameProduct.size()]),new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getContext(),"" + which, Toast.LENGTH_SHORT).show();
+            public void onClick(DialogInterface dialog, int position) {
+                Product product = products.get(position);
+                presenter.addProduct(product);
+                //Toast.makeText(getContext(),"" + products.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
         builder.show();
     }
 
-    public void populateProductList(ArrayList<Product> products){
-        RecyclerView productList = (RecyclerView) findViewById(R.id.rv_sales_products);
+    public void initRecyclerView(ArrayList<Product> products){
+        productList = (RecyclerView) findViewById(R.id.rv_sales_products);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         productList.setLayoutManager(layoutManager);
         productList.setHasFixedSize(true);
-        ProductAdapter productAdapter = new ProductAdapter(products, this);
+        productAdapter = new ProductAdapter(products, this);
         productList.setAdapter(productAdapter);
+    }
+
+    @Override
+    public void productAdded(ArrayList<Product> products){
+        initRecyclerView(products);
     }
 
 

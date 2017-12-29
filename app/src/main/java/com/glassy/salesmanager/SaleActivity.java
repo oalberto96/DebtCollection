@@ -79,6 +79,17 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     }
 
     @Override
+    public void printTotal(float total) {
+
+    }
+
+    @Override
+    public void productAdded(ArrayList<Product> products) {
+
+    }
+
+
+    @Override
     public void loadClientsSuccess(ArrayList<Client> clients) {
 
     }

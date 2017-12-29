@@ -21,11 +21,32 @@ import java.util.ArrayList;
 public class SalePresenter implements SaleEvents {
     protected final SaleModel model;
     protected final SaleView view;
+    protected Sale sale;
 
     public SalePresenter(SaleView view) {
         this.view = view;
         this.model = new SaleModel(this);
         model.loadSaleList();
+        this.sale = new Sale();
+    }
+
+    public ArrayList<Product> getProducts(){
+        return sale.getProducts();
+    }
+
+
+    public void addProduct(Product product) {
+        float total = 0;
+        for (Product aux: sale.getProducts()){
+            if(aux.getId() == product.getId()){
+                return;
+            }
+            total += aux.getPrice();
+        }
+        total += product.getPrice();
+        sale.addProduct(product);
+        view.productAdded(sale.getProducts());
+        view.printTotal(total);
     }
 
     @Override
@@ -37,7 +58,6 @@ public class SalePresenter implements SaleEvents {
     public void loadSales() {
         model.loadSaleList();
     }
-
 
 
     @Override
@@ -78,4 +98,6 @@ public class SalePresenter implements SaleEvents {
     public Context getContext() {
         return view.getContext();
     }
+
+
 }
