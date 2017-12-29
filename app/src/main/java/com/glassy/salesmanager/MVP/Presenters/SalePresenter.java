@@ -39,6 +39,15 @@ public class SalePresenter implements SaleEvents {
         return sale.getProducts();
     }
 
+    public void getTotal(ArrayList<Integer> quantity){
+        float total = 0;
+        int i = 0;
+        for (Product aux: sale.getProducts()){
+            total += aux.getPrice() * quantity.get(i);
+        }
+        sale.setQuantity(quantity);
+        view.printTotal(total);
+    }
 
     public void addProduct(Product product, ArrayList<Integer> quantity) {
         float total = 0;

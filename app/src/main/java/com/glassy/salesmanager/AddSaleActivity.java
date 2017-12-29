@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -93,7 +95,13 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
 
     public void initRecyclerView(ArrayList<Product> products){
         productList = (RecyclerView) findViewById(R.id.rv_sales_products);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+            @Override
+            public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+                super.onLayoutChildren(recycler, state);
+                changedTextView();
+            }
+        };
         productList.setLayoutManager(layoutManager);
         productList.setHasFixedSize(true);
         productAdapter = new ProductAdapter(products, this);
@@ -104,6 +112,31 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     public void productAdded(ArrayList<Product> products){
         productAdapter.notifyDataSetChanged();
         //initRecyclerView(products);
+    }
+
+    public void changedTextView(){
+        ArrayList<Integer> quantity = new ArrayList<>();
+        int countItems = productList.getLayoutManager().getChildCount();
+        for (int i = 0; i < countItems; i++ ){
+            FrameLayout frameLayout = (FrameLayout) productList.getLayoutManager().findViewByPosition(i);
+            EditText editText = (EditText) frameLayout.getChildAt(1);
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    presenter.getTotal(getQuantity());
+                }
+            });
+        }
     }
 
 
