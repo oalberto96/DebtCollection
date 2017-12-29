@@ -1,6 +1,7 @@
 package com.glassy.salesmanager.MVP.Presenters;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.glassy.salesmanager.Events.ProductEvents;
 import com.glassy.salesmanager.Events.SaleEvents;
@@ -44,6 +45,7 @@ public class SalePresenter implements SaleEvents {
         int i = 0;
         for (Product aux: sale.getProducts()){
             total += aux.getPrice() * quantity.get(i);
+            i++;
         }
         sale.setQuantity(quantity);
         view.printTotal(total);

@@ -114,16 +114,15 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         //initRecyclerView(products);
     }
 
-    public void changedTextView(){
+    public void changedTextView() {
         ArrayList<Integer> quantity = new ArrayList<>();
         int countItems = productList.getLayoutManager().getChildCount();
-        for (int i = 0; i < countItems; i++ ){
-            FrameLayout frameLayout = (FrameLayout) productList.getLayoutManager().findViewByPosition(i);
+        if (countItems > 0 ){
+            FrameLayout frameLayout = (FrameLayout) productList.getLayoutManager().findViewByPosition(countItems - 1);
             EditText editText = (EditText) frameLayout.getChildAt(1);
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 }
 
                 @Override
