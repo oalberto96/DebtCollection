@@ -102,7 +102,8 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
 
     @Override
     public void productAdded(ArrayList<Product> products){
-        initRecyclerView(products);
+        productAdapter.notifyDataSetChanged();
+        //initRecyclerView(products);
     }
 
 
@@ -125,7 +126,12 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         for (int i = 0; i < countItems; i++ ){
             FrameLayout frameLayout = (FrameLayout) productList.getLayoutManager().findViewByPosition(i);
             EditText editText = (EditText) frameLayout.getChildAt(1);
-            quantity.add(Integer.parseInt(editText.getText().toString()));
+            try {
+                quantity.add(Integer.parseInt(editText.getText().toString()));
+            }
+            catch(Exception e){
+                quantity.add(1);
+            }
         }
         return quantity;
     }
