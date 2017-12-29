@@ -47,7 +47,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
     public void onBindViewHolder(ClientViewHolder holder, int position) {
         Product product = products.get(position);
         holder.bind(
-                product.getName()
+                product.getName(),
+                String.valueOf(product.getPrice())
         );
         holder.itemView.setTag(product.getId());
 
@@ -60,14 +61,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
 
     public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tv_productName;
+        TextView tv_productPrice;
+
         public ClientViewHolder(View itemView) {
             super(itemView);
             tv_productName = (TextView) itemView.findViewById(R.id.tv_item_product_name);
+            tv_productPrice = (TextView) itemView.findViewById(R.id.tv_item_product_price);
             itemView.setOnClickListener(this);
         }
 
-        void bind(String productName) {
+        void bind(String productName, String productPrice) {
             this.tv_productName.setText(productName);
+            this.tv_productPrice.setText("$ " + productPrice);
         }
 
         @Override
