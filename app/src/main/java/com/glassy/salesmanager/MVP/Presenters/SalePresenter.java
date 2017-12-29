@@ -31,6 +31,10 @@ public class SalePresenter implements SaleEvents {
         this.sale = new Sale();
     }
 
+    public Sale getSale(){
+        return sale;
+    }
+
     public ArrayList<Product> getProducts(){
         return sale.getProducts();
     }
@@ -45,6 +49,7 @@ public class SalePresenter implements SaleEvents {
             }
             total += aux.getPrice() * quantity.get(i);
         }
+        sale.setQuantity(quantity);
         total += product.getPrice();
         sale.addProduct(product);
         view.productAdded(sale.getProducts());

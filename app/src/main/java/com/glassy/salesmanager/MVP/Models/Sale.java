@@ -15,12 +15,11 @@ public class Sale implements Parcelable {
     protected String name;
     protected Client client;
     protected ArrayList<Product> products;
+    protected ArrayList<Integer> product_quantity;
 
     public ArrayList<Integer> getProduct_quantity() {
         return product_quantity;
     }
-
-    protected ArrayList<Integer> product_quantity;
 
     public Client getClient() {
         return client;
@@ -97,5 +96,9 @@ public class Sale implements Parcelable {
 
     public ArrayList<Product> getProducts() {
         return products;
+    }
+
+    public void setQuantity(ArrayList<Integer> quantity){
+        this.product_quantity = quantity;
     }
 }

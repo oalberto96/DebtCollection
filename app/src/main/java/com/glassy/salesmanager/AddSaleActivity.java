@@ -125,18 +125,15 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         for (int i = 0; i < countItems; i++ ){
             FrameLayout frameLayout = (FrameLayout) productList.getLayoutManager().findViewByPosition(i);
             EditText editText = (EditText) frameLayout.getChildAt(1);
-            try {
-                quantity.add(Integer.parseInt(editText.getText().toString()));
-            }
-            catch(Exception e){
-                quantity.add(1);
-            }
+            quantity.add(Integer.parseInt(editText.getText().toString()));
         }
         return quantity;
     }
 
     public void onClickbtnAddSale(View view){
-
+        for(Integer i :presenter.getSale().getProduct_quantity()){
+            Toast.makeText(this, "" + i, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
