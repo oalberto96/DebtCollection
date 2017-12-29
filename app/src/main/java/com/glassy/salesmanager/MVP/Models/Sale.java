@@ -15,6 +15,11 @@ public class Sale implements Parcelable {
     protected String name;
     protected Client client;
     protected ArrayList<Product> products;
+
+    public ArrayList<Integer> getProduct_quantity() {
+        return product_quantity;
+    }
+
     protected ArrayList<Integer> product_quantity;
 
     public Client getClient() {

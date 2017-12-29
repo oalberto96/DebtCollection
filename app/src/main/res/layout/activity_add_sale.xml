@@ -53,4 +53,11 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_add_sale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickbtnAddSale"
+        android:text="@string/save_sale"/>
+
 </LinearLayout>

@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,8 @@ import com.glassy.salesmanager.MVP.Presenters.SalePresenter;
 import com.glassy.salesmanager.MVP.Views.SaleView;
 import com.glassy.salesmanager.UI.ProductAdapter;
 import com.glassy.salesmanager.UI.SaleAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +51,6 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
 
     @Override
     public void loadSaleList(ArrayList<Sale> sales) {
-
     }
 
     @Override
@@ -81,7 +84,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
             @Override
             public void onClick(DialogInterface dialog, int position) {
                 Product product = products.get(position);
-                presenter.addProduct(product);
+                presenter.addProduct(product,getQuantity());
                 //Toast.makeText(getContext(),"" + products.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -114,6 +117,26 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, s_clients);
         s_clientList = (Spinner)findViewById(R.id.s_client_list);
         s_clientList.setAdapter(adapter);
+    }
+
+    public ArrayList<Integer> getQuantity(){
+        ArrayList<Integer> quantity = new ArrayList<>();
+        int countItems = productList.getLayoutManager().getChildCount();
+        for (int i = 0; i < countItems; i++ ){
+            FrameLayout frameLayout = (FrameLayout) productList.getLayoutManager().findViewByPosition(i);
+            EditText editText = (EditText) frameLayout.getChildAt(1);
+            try {
+                quantity.add(Integer.parseInt(editText.getText().toString()));
+            }
+            catch(Exception e){
+                quantity.add(1);
+            }
+        }
+        return quantity;
+    }
+
+    public void onClickbtnAddSale(View view){
+
     }
 
     @Override

@@ -23,6 +23,7 @@ public class SalePresenter implements SaleEvents {
     protected final SaleView view;
     protected Sale sale;
 
+
     public SalePresenter(SaleView view) {
         this.view = view;
         this.model = new SaleModel(this);
@@ -35,13 +36,14 @@ public class SalePresenter implements SaleEvents {
     }
 
 
-    public void addProduct(Product product) {
+    public void addProduct(Product product, ArrayList<Integer> quantity) {
         float total = 0;
+        int i = 0;
         for (Product aux: sale.getProducts()){
             if(aux.getId() == product.getId()){
                 return;
             }
-            total += aux.getPrice();
+            total += aux.getPrice() * quantity.get(i);
         }
         total += product.getPrice();
         sale.addProduct(product);
