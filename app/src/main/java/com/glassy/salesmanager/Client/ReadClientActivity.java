@@ -1,4 +1,4 @@
-package com.glassy.salesmanager;
+package com.glassy.salesmanager.Client;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,12 +6,9 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Presenters.ClientPresenter;
-import com.glassy.salesmanager.MVP.Views.ClientView;
+import com.glassy.salesmanager.R;
 
 import java.util.ArrayList;
 

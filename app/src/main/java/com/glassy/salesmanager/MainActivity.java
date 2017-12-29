@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Seller;
-import com.glassy.salesmanager.MVP.Models.User;
+import com.glassy.salesmanager.Client.ClientActivity;
+import com.glassy.salesmanager.Product.ProductActivity;
+import com.glassy.salesmanager.Sale.SaleActivity;
 
 public class MainActivity extends AppCompatActivity {
 

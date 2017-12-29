@@ -1,4 +1,4 @@
-package com.glassy.salesmanager.MVP.Models;
+package com.glassy.salesmanager.Product;
 
 import android.os.Parcel;
 import android.os.Parcelable;

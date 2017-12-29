@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.glassy.salesmanager.MVP.Models.Client;
+import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.R;
 
 import java.util.ArrayList;

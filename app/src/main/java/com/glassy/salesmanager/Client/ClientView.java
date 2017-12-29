@@ -1,14 +1,10 @@
-package com.glassy.salesmanager.MVP.Views;
+package com.glassy.salesmanager.Client;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
-import com.glassy.salesmanager.Events.UserEvents;
-import com.glassy.salesmanager.MVP.Models.Client;
+import com.glassy.salesmanager.Client.Client;
 
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**

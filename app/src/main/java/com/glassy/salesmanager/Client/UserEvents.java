@@ -1,9 +1,8 @@
-package com.glassy.salesmanager.Events;
+package com.glassy.salesmanager.Client;
 
 import android.content.Context;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Seller;
+import com.glassy.salesmanager.Client.Client;
 
 import java.util.ArrayList;
 

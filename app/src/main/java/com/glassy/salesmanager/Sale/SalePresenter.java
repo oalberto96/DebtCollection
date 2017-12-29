@@ -1,17 +1,9 @@
-package com.glassy.salesmanager.MVP.Presenters;
+package com.glassy.salesmanager.Sale;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.glassy.salesmanager.Events.ProductEvents;
-import com.glassy.salesmanager.Events.SaleEvents;
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Product;
-import com.glassy.salesmanager.MVP.Models.ProductModel;
-import com.glassy.salesmanager.MVP.Models.Sale;
-import com.glassy.salesmanager.MVP.Models.SaleModel;
-import com.glassy.salesmanager.MVP.Views.ProductView;
-import com.glassy.salesmanager.MVP.Views.SaleView;
+import com.glassy.salesmanager.Client.Client;
+import com.glassy.salesmanager.Product.Product;
 
 import java.util.ArrayList;
 

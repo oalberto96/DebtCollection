@@ -1,4 +1,4 @@
-package com.glassy.salesmanager;
+package com.glassy.salesmanager.Product;
 
 import android.content.Intent;
 import android.os.Parcelable;
@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Product;
+import com.glassy.salesmanager.R;
 
 public class AddProductActivity extends AppCompatActivity {
     Button btnAddNewProduct;

@@ -1,12 +1,8 @@
-package com.glassy.salesmanager.MVP.Models;
+package com.glassy.salesmanager.Client;
 
-import android.app.Application;
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.glassy.salesmanager.Events.UserEvents;
 import com.glassy.salesmanager.data.DebtCollectionContract;
 import com.glassy.salesmanager.data.DebtCollectionDBHelper;
 

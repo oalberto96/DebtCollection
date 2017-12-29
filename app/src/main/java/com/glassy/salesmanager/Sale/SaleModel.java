@@ -1,15 +1,14 @@
-package com.glassy.salesmanager.MVP.Models;
+package com.glassy.salesmanager.Sale;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.glassy.salesmanager.Events.ProductEvents;
-import com.glassy.salesmanager.Events.SaleEvents;
+import com.glassy.salesmanager.Client.Client;
+import com.glassy.salesmanager.Product.Product;
 import com.glassy.salesmanager.data.DebtCollectionContract;
 import com.glassy.salesmanager.data.DebtCollectionDBHelper;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by glassy on 12/19/17.

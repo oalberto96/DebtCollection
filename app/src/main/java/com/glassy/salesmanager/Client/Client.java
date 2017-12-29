@@ -1,10 +1,9 @@
-package com.glassy.salesmanager.MVP.Models;
+package com.glassy.salesmanager.Client;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.StrictMode;
 
-import com.glassy.salesmanager.Events.UserEvents;
+import com.glassy.salesmanager.MVP.Models.User;
 
 /**
  * Created by glassy on 12/16/17.

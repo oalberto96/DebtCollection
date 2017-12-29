@@ -1,10 +1,10 @@
-package com.glassy.salesmanager.MVP.Views;
+package com.glassy.salesmanager.Sale;
 
 import android.content.Context;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Product;
-import com.glassy.salesmanager.MVP.Models.Sale;
+import com.glassy.salesmanager.Client.Client;
+import com.glassy.salesmanager.Product.Product;
+import com.glassy.salesmanager.Sale.Sale;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,8 @@
-package com.glassy.salesmanager.MVP.Views;
+package com.glassy.salesmanager.Product;
 
 import android.content.Context;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Product;
+import com.glassy.salesmanager.Product.Product;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,10 @@
-package com.glassy.salesmanager.MVP.Models;
+package com.glassy.salesmanager.Sale;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.glassy.salesmanager.Client.Client;
+import com.glassy.salesmanager.Product.Product;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.glassy.salesmanager;
+package com.glassy.salesmanager.Sale;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,15 +17,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Product;
-import com.glassy.salesmanager.MVP.Models.Sale;
-import com.glassy.salesmanager.MVP.Presenters.SalePresenter;
-import com.glassy.salesmanager.MVP.Views.SaleView;
+import com.glassy.salesmanager.Client.Client;
+import com.glassy.salesmanager.Product.Product;
+import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ProductAdapter;
-import com.glassy.salesmanager.UI.SaleAdapter;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;

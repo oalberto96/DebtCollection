@@ -1,4 +1,4 @@
-package com.glassy.salesmanager;
+package com.glassy.salesmanager.Product;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
-import com.glassy.salesmanager.MVP.Models.Client;
-import com.glassy.salesmanager.MVP.Models.Product;
-import com.glassy.salesmanager.MVP.Presenters.ClientPresenter;
-import com.glassy.salesmanager.MVP.Presenters.ProductPresenter;
-import com.glassy.salesmanager.MVP.Views.ProductView;
-import com.glassy.salesmanager.UI.ClientAdapter;
+import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ProductAdapter;
 
 import java.util.ArrayList;
