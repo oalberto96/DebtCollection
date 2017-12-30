@@ -124,12 +124,6 @@ public class SalePresenter implements SaleEvents {
             view.saveSaleFail("client");
             return;
         }
-        Log.d("New sale:", sale.getClient().getFullName());
-        int i = 0;
-        for(Product product: sale.getProducts()){
-            Log.d("Product: ", product.getName());
-            Log.d("Quantity: ", sale.getProduct_quantity().get(i).toString());
-            i++;
-        }
+        model.saveSale(sale);
     }
 }

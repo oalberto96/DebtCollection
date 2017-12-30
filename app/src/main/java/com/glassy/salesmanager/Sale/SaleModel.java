@@ -9,6 +9,7 @@ import com.glassy.salesmanager.Product.Product;
 import com.glassy.salesmanager.data.DebtCollectionContract;
 import com.glassy.salesmanager.data.DebtCollectionDBHelper;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -83,6 +84,42 @@ public class SaleModel {
         return clients;
     }
 
+    public void saveSale(Sale sale){
+        sale.setId(saveSaleTable(sale));
+    }
+
+    private int saveSaleTable(Sale sale){
+        db = dbHelper.getWritableDatabase();
+        String dbInsert = "INSERT INTO " + DebtCollectionContract.Sale.TABLE_NAME + " (" +
+                DebtCollectionContract.Sale.COLUMN_NAME + ", " +
+                DebtCollectionContract.Sale.CLIENT_ID +
+                ") VALUES (" + "\"" +
+                sale.getName() + "\", \"" +
+                sale.getClient().getId() +
+                "\");";
+        db.execSQL(dbInsert);
+        db.close();
+        return getLastSaleID();
+    }
+
+    private int getLastSaleID(){
+        db = dbHelper.getWritableDatabase();
+        int id = 0;
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Sale.TABLE_NAME +
+                " ORDER BY " +
+                DebtCollectionContract.Sale._ID +
+                " DESC LIMIT 1;";
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            cursor.moveToNext();
+            id = cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Sale._ID));
+        }
+        db.close();
+        return id;
+    }
+
+
     public void saleProduct(Sale sale){
         //Sql
     }
@@ -93,6 +130,20 @@ public class SaleModel {
 
     public ArrayList<Sale> getSales(){
         ArrayList<Sale> sales = new ArrayList<Sale>();
+        db = dbHelper.getWritableDatabase();
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Sale.TABLE_NAME+";";
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            while (cursor.moveToNext()){
+                sales.add(new Sale(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Sale._ID)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Sale.COLUMN_NAME)),
+                        Timestamp.valueOf(cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Sale.COLUMN_DATE)))
+                ));
+            }
+        }
+        db.close();
         return sales;
     }
 }

@@ -48,6 +48,7 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " +
                         DebtCollectionContract.Sale.TABLE_NAME + " ( " +
                         DebtCollectionContract.Sale._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DebtCollectionContract.Sale.CLIENT_ID + " INTEGER NOT NULL, " +
                         DebtCollectionContract.Sale.COLUMN_NAME + " TEXT NOT NULL, " +
                         DebtCollectionContract.Sale.COLUMN_DATE + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
                         ");"

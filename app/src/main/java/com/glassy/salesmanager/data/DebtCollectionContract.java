@@ -28,6 +28,7 @@ public class DebtCollectionContract {
     }
 
     public static final class Sale implements BaseColumns{
+        public static final String CLIENT_ID = "clientId";
         public static final String TABLE_NAME = "sale";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_DATE = "date";

@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class Sale implements Parcelable {
     protected Client client;
     protected ArrayList<Product> products;
     protected ArrayList<Integer> product_quantity;
+    protected Date dateSale;
 
     public ArrayList<Integer> getProduct_quantity() {
         return product_quantity;
@@ -28,10 +30,15 @@ public class Sale implements Parcelable {
         return client;
     }
 
-    protected Date dateSale;
 
     public Sale(){
         products = new ArrayList<>();
+    }
+
+    public Sale(int id, String name, Timestamp date){
+        this.id = id;
+        this.name = name;
+        this.dateSale = date;
     }
 
     public Sale(String name, Client client, ArrayList<Product> products, ArrayList<Integer> product_quantity, Date dateSale) {
@@ -107,5 +114,9 @@ public class Sale implements Parcelable {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
