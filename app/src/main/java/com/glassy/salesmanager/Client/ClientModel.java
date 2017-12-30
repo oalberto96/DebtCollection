@@ -74,12 +74,8 @@ public class ClientModel {
                 );
             db.close();
             events.readClientSuccessEvent(client);
-
-
         }
         db.close();
-
-
     }
 
     public void deleteClient(int id){

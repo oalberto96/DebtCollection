@@ -48,7 +48,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ClientViewHold
         Sale sale = sales.get(position);
         holder.bind(
                 sale.getName(),
-                //sale.getClient().getFirst_name() + " " + sale.getClient().getLast_name(),
+                sale.getClient().getFirst_name() + " " + sale.getClient().getLast_name(),
                 sale.getDateSale().toString()
         );
         holder.itemView.setTag(sale.getId());
@@ -73,10 +73,6 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ClientViewHold
             itemView.setOnClickListener(this);
         }
 
-        void bind(String saleName, String saleDate){
-            this.tv_saleName.setText(saleName);
-            this.tv_saleDate.setText(saleDate);
-        }
 
         void bind(String saleName, String saleClient, String saleDate) {
             this.tv_saleName.setText(saleName);

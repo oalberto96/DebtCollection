@@ -35,8 +35,9 @@ public class Sale implements Parcelable {
         products = new ArrayList<>();
     }
 
-    public Sale(int id, String name, Timestamp date){
+    public Sale(int id, String name, Client client, Timestamp date){
         this.id = id;
+        this.client = client;
         this.name = name;
         this.dateSale = date;
     }

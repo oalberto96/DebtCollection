@@ -89,6 +89,30 @@ public class SaleModel {
         saveSaleProductTable(sale);
     }
 
+    public Client getClient(int id){
+        db = dbHelper.getWritableDatabase();
+        Client client = new Client("","");
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Client.TABLE_NAME +
+                " WHERE "+
+                DebtCollectionContract.Client._ID+" = " + id;
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            cursor.moveToNext();
+            client = new Client(
+                    cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Client._ID)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_FIRST_NAME)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_LAST_NAME)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_ADDRESS)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_PHONE_NUMBER)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_NOTES)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_TIN))
+            );
+        }
+        db.close();
+        return client;
+    }
+
     private void saveSaleProductTable(Sale sale) {
         db = dbHelper.getWritableDatabase();
         for(int position = 0; position < sale.getProducts().size(); position++) {
@@ -157,6 +181,7 @@ public class SaleModel {
                 sales.add(new Sale(
                         cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Sale._ID)),
                         cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Sale.COLUMN_NAME)),
+                        getClient(cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Sale.CLIENT_ID))),
                         Timestamp.valueOf(cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Sale.COLUMN_DATE)))
                 ));
             }
