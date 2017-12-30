@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by glassy on 12/19/17.
  */
 
-public interface SaleEvents {
+interface SaleEvents {
     void loadSalesList(ArrayList<Sale> sales);
     void loadSales();
     void loadSale(Sale sale);

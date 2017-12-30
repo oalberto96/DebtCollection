@@ -33,6 +33,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     ProductAdapter productAdapter;
     Spinner s_clientList;
     TextView tv_total;
+    TextView tv_saleClient;
 
     HashMap<Integer, String> s_map;
 
@@ -41,8 +42,8 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sale);
         presenter = new SalePresenter(this);
-        presenter.loadClients();
         tv_total = (TextView) findViewById(R.id.tv_total);
+        tv_saleClient = (TextView) findViewById(R.id.tv_sale_client);
         initRecyclerView(presenter.getProducts());
     }
 
@@ -135,17 +136,22 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     }
 
 
-    public void populateClientList(ArrayList<Client> clients){
-        ArrayList<String> s_clients = new ArrayList<String>();
-        s_map = new HashMap<Integer, String>();
-        int i=0;
-        for (Client client: clients){
-            s_map.put(client.getId(),client.getFirst_name());
-            s_clients.add(client.getFirst_name());
+    public void populateClientList(final ArrayList<Client> clients){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        ArrayList<String> nameProduct = new ArrayList<>();
+        for(Client client: clients){
+            nameProduct.add( client.getFullName());
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, s_clients);
-        s_clientList = (Spinner)findViewById(R.id.s_client_list);
-        s_clientList.setAdapter(adapter);
+        builder.setTitle(getResources().getString(R.string.select_client));
+        builder.setItems(nameProduct.toArray(new CharSequence[nameProduct.size()]),new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int position) {
+                Client client = clients.get(position);
+                tv_saleClient.setText(client.getFullName());
+                presenter.addClient(client);
+            }
+        });
+        builder.show();
     }
 
     public ArrayList<Integer> getQuantity(){
@@ -168,6 +174,10 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         for(Integer i :presenter.getSale().getProduct_quantity()){
             Toast.makeText(this, "" + i, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void onClickbtnSelectClient(View view){
+        presenter.loadClients();
     }
 
     @Override

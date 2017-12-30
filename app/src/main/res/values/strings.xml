@@ -33,6 +33,7 @@
     <string name="sales">Sales</string>
 
     <string name="select_product">Select a product</string>
+    <string name="select_client">Select client</string>
     <string name="save_sale">Save sale</string>
 
 </resources>

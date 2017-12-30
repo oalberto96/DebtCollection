@@ -24,6 +24,11 @@ public class SalePresenter implements SaleEvents {
         this.sale = new Sale();
     }
 
+    public void addClient(Client client) {
+        sale.setClient(client);
+    }
+
+
     public Sale getSale(){
         return sale;
     }
@@ -108,6 +113,5 @@ public class SalePresenter implements SaleEvents {
     public Context getContext() {
         return view.getContext();
     }
-
 
 }

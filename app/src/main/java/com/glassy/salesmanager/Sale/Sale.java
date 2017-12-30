@@ -104,4 +104,8 @@ public class Sale implements Parcelable {
     public void setQuantity(ArrayList<Integer> quantity){
         this.product_quantity = quantity;
     }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

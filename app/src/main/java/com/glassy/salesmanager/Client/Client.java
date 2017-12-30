@@ -98,4 +98,8 @@ public class Client extends User implements Parcelable {
         parcel.writeString(tin);
 
     }
+
+    public String getFullName() {
+        return first_name + " " + last_name ;
+    }
 }

@@ -3,6 +3,7 @@ package com.glassy.salesmanager.Sale;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.glassy.salesmanager.Sale.SaleEvents;
 import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
 import com.glassy.salesmanager.data.DebtCollectionContract;
