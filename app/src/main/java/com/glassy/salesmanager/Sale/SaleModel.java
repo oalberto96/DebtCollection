@@ -86,6 +86,24 @@ public class SaleModel {
 
     public void saveSale(Sale sale){
         sale.setId(saveSaleTable(sale));
+        saveSaleProductTable(sale);
+    }
+
+    private void saveSaleProductTable(Sale sale) {
+        db = dbHelper.getWritableDatabase();
+        for(int position = 0; position < sale.getProducts().size(); position++) {
+            String dbInsert = "INSERT INTO " + DebtCollectionContract.SaleProduct.TABLE_NAME + " (" +
+                    DebtCollectionContract.SaleProduct.COLUMN_SALE_ID + ", " +
+                    DebtCollectionContract.SaleProduct.COLUMN_PRODUCT_ID + ", " +
+                    DebtCollectionContract.SaleProduct.COLUMN_PRODUCT_QUANTITY +
+                    ") VALUES (" + "\"" +
+                    sale.getId() + "\", \"" +
+                    sale.getProducts().get(position).getId() + "\", \"" +
+                    sale.getProduct_quantity().get(position) +
+                    "\");";
+            db.execSQL(dbInsert);
+        }
+        db.close();
     }
 
     private int saveSaleTable(Sale sale){
