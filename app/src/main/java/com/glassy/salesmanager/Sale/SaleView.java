@@ -19,5 +19,6 @@ public interface SaleView {
     void productAdded(ArrayList<Product> products);
     void loadClientsSuccess(ArrayList<Client> clients);
     void loadProductsSuccess(ArrayList<Product> products);
+    void saveSaleFail(String message);
     Context getContext();
 }

@@ -1,6 +1,7 @@
 package com.glassy.salesmanager.Sale;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
@@ -114,4 +115,21 @@ public class SalePresenter implements SaleEvents {
         return view.getContext();
     }
 
+    public void saveSale() {
+        if (sale.getProducts() == null){
+            view.saveSaleFail("product");
+            return;
+        }
+        else if (sale.getClient() == null){
+            view.saveSaleFail("client");
+            return;
+        }
+        Log.d("New sale:", sale.getClient().getFullName());
+        int i = 0;
+        for(Product product: sale.getProducts()){
+            Log.d("Product: ", product.getName());
+            Log.d("Quantity: ", sale.getProduct_quantity().get(i).toString());
+            i++;
+        }
+    }
 }

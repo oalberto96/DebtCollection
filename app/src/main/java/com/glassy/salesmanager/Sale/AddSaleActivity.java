@@ -171,8 +171,15 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     }
 
     public void onClickbtnAddSale(View view){
-        for(Integer i :presenter.getSale().getProduct_quantity()){
-            Toast.makeText(this, "" + i, Toast.LENGTH_SHORT).show();
+        presenter.saveSale();
+    }
+
+    public void saveSaleFail(String message){
+        if (message.equals("product")){
+            Toast.makeText(this,getResources().getString(R.string.message_sale_product_fail),Toast.LENGTH_SHORT).show();
+        }
+        else if (message.equals("client")){
+            Toast.makeText(this,getResources().getString(R.string.message_product_client_fail),Toast.LENGTH_SHORT).show();
         }
     }
 

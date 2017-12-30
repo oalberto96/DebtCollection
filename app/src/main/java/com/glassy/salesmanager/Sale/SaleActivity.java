@@ -95,6 +95,11 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     }
 
     @Override
+    public void saveSaleFail(String message) {
+
+    }
+
+    @Override
     public Context getContext() {
         return this;
     }
