@@ -120,6 +120,11 @@ public class SalePresenter implements SaleEvents {
         return view.getContext();
     }
 
+    @Override
+    public void deleteSaleSuccess() {
+        view.deleteSaleSucces();
+    }
+
     public void saveSale() {
         if (sale.getProducts() == null){
             view.saveSaleFail("product");
@@ -130,5 +135,9 @@ public class SalePresenter implements SaleEvents {
             return;
         }
         model.saveSale(sale);
+    }
+
+    public void deleteSale(int id) {
+        model.deleteSale(id);
     }
 }

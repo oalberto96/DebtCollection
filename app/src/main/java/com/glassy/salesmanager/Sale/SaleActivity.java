@@ -62,7 +62,7 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 int id = (int) viewHolder.itemView.getTag();
-                //presenter.deleteClient(id);
+                presenter.deleteSale(id);
             }
         }).attachToRecyclerView(saleList);
     }
@@ -106,6 +106,11 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     @Override
     public Context getContext() {
         return this;
+    }
+
+    @Override
+    public void deleteSaleSucces() {
+        presenter.loadSales();
     }
 
     @Override

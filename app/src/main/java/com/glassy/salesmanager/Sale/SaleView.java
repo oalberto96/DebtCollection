@@ -22,4 +22,6 @@ public interface SaleView {
     void loadProductsSuccess(ArrayList<Product> products);
     void saveSaleFail(String message);
     Context getContext();
+
+    void deleteSaleSucces();
 }

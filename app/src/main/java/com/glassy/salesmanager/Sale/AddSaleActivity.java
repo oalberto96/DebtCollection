@@ -204,6 +204,11 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     }
 
     @Override
+    public void deleteSaleSucces() {
+
+    }
+
+    @Override
     public void onItemClickListener(int id) {
 
     }

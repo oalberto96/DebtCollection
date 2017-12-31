@@ -190,4 +190,13 @@ public class SaleModel {
         db.close();
         return sales;
     }
+
+    public void deleteSale(int id) {
+        db = dbHelper.getWritableDatabase();
+        String SQLScript = "DELETE FROM " + DebtCollectionContract.Sale.TABLE_NAME +
+                " WHERE _id = " + id;
+        db.execSQL(SQLScript);
+        db.close();
+        events.deleteSaleSuccess();
+    }
 }

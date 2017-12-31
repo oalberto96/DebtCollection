@@ -24,4 +24,6 @@ interface SaleEvents {
     void addNewSale(Sale newSale);
     void addNewProductSuccess();
     Context getContext();
+
+    void deleteSaleSuccess();
 }
