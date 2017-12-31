@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context="com.glassy.salesmanager.Sale.AddSaleActivity">
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_sale_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/sale_name"
+            android:inputType="textCapWords"/>
+    </android.support.design.widget.TextInputLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

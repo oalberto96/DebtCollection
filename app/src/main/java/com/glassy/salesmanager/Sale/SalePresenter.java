@@ -82,6 +82,11 @@ public class SalePresenter implements SaleEvents {
     }
 
     @Override
+    public void saveSaleSuccess() {
+        view.saveSaleSuccess();
+    }
+
+    @Override
     public void loadProducts() {
         model.loadProducts();
     }

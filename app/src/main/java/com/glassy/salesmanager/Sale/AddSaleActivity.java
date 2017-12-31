@@ -2,6 +2,8 @@ package com.glassy.salesmanager.Sale;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     Spinner s_clientList;
     TextView tv_total;
     TextView tv_saleClient;
+    EditText et_saleName;
 
     HashMap<Integer, String> s_map;
 
@@ -44,6 +47,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         presenter = new SalePresenter(this);
         tv_total = (TextView) findViewById(R.id.tv_total);
         tv_saleClient = (TextView) findViewById(R.id.tv_sale_client);
+        et_saleName = (EditText) findViewById(R.id.et_sale_name);
         initRecyclerView(presenter.getProducts());
     }
 
@@ -171,7 +175,14 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     }
 
     public void onClickbtnAddSale(View view){
+        presenter.sale.setName(et_saleName.getText().toString());
         presenter.saveSale();
+    }
+
+    public void saveSaleSuccess(){
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent);
+        onBackPressed();
     }
 
     public void saveSaleFail(String message){

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public interface SaleView {
     void loadSaleList(ArrayList<Sale> sales);
     void readSale(Sale sale);
+    void saveSaleSuccess();
     void printTotal(float total);
     void productAdded(ArrayList<Product> products);
     void loadClientsSuccess(ArrayList<Client> clients);

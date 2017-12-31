@@ -37,5 +37,6 @@
     <string name="save_sale">Save sale</string>
     <string name="message_sale_product_fail">Error: Select at least one product</string>
     <string name="message_product_client_fail">Error: Select a client</string>
+    <string name="sale_name">Sale Name</string>
 
 </resources>

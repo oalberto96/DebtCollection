@@ -40,8 +40,7 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1 && resultCode == RESULT_OK){
-            Product product = data.getParcelableExtra("newProduct");
-            //presenter.addNewProduct(product);
+            presenter.loadSales();
         }
     }
 
@@ -70,6 +69,11 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
 
     @Override
     public void readSale(Sale sale) {
+
+    }
+
+    @Override
+    public void saveSaleSuccess() {
 
     }
 

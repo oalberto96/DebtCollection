@@ -16,6 +16,7 @@ interface SaleEvents {
     void loadSalesList(ArrayList<Sale> sales);
     void loadSales();
     void loadSale(Sale sale);
+    void saveSaleSuccess();
     void loadProducts();
     void loadProductsSucces(ArrayList<Product> products);
     void loadClients();

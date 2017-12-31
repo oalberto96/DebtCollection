@@ -87,6 +87,7 @@ public class SaleModel {
     public void saveSale(Sale sale){
         sale.setId(saveSaleTable(sale));
         saveSaleProductTable(sale);
+        events.saveSaleSuccess();
     }
 
     public Client getClient(int id){
