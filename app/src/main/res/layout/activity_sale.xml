@@ -5,7 +5,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_add_new_product"
+        android:text="@string/btn_add_new_sale"
         android:id="@+id/btn_new_product"
         android:onClick="onClickbtnNewSale"
         />

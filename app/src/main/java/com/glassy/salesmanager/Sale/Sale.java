@@ -124,4 +124,28 @@ public class Sale implements Parcelable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public float getSaleTotal(){
+        float total = 0;
+        int position = 0;
+        for(Product product:products){
+            total += product.getPrice() * product_quantity.get(position) ;
+            position++;
+        }
+        return total;
+    }
+
+    public static class SaleProduct{
+        protected int saleId;
+        protected int productId;
+        protected int productQuantity;
+
+        public SaleProduct(){}
+
+        public SaleProduct(int saleId, int productId, int productQuantity){
+            this.saleId = saleId;
+            this.productId = productId;
+            this.productQuantity = productQuantity;
+        }
+    }
 }
