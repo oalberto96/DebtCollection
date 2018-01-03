@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class ReadClientActivity extends AppCompatActivity implements ClientView {
     private ClientPresenter presenter;
     TextView tvFirstName;
-    TextView tvLastName;
     TextView tvAddress;
     TextView tvPhoneNumber;
     TextView tvTIN;
@@ -29,7 +28,6 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
         presenter = new ClientPresenter(this);
 
         tvFirstName = (TextView) findViewById(R.id.tv_first_name);
-        tvLastName = (TextView) findViewById(R.id.tv_last_name);
         tvAddress = (TextView) findViewById(R.id.tv_address);
         tvPhoneNumber = (TextView) findViewById(R.id.tv_phone_number);
         tvTIN = (TextView) findViewById(R.id.tv_tin);
@@ -73,8 +71,7 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
 
     private void fillFormViews(Client client) {
         this.client = client;
-        tvFirstName.setText(client.getFirst_name());
-        tvLastName.setText(client.getLast_name());
+        tvFirstName.setText(client.getFirst_name() + " " + client.getLast_name() );
         tvAddress.setText(client.getAddress());
         tvPhoneNumber.setText(client.getPhoneNumber());
         tvNotes.setText(client.getNotes());
