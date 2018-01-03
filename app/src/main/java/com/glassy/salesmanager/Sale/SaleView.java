@@ -24,4 +24,6 @@ public interface SaleView {
     Context getContext();
 
     void deleteSaleSucces();
+
+    void loadSaleSuccess();
 }

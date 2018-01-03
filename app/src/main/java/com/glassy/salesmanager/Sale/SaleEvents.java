@@ -26,4 +26,8 @@ interface SaleEvents {
     Context getContext();
 
     void deleteSaleSuccess();
+
+    void retrieveSale(int saleId);
+
+    void loadSaleSuccess(Sale sale);
 }

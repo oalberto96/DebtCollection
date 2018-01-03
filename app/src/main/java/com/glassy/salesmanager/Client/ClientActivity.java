@@ -105,6 +105,5 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
                 ReadClientActivity.class);
         intent.putExtra("clientId",id);
         startActivity(intent);
-        Toast.makeText(this,"" + id, Toast.LENGTH_SHORT).show();
     }
 }

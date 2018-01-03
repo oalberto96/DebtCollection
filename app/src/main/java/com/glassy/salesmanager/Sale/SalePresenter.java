@@ -125,6 +125,17 @@ public class SalePresenter implements SaleEvents {
         view.deleteSaleSucces();
     }
 
+    @Override
+    public void retrieveSale(int saleId) {
+        model.retrieveSale(saleId);
+    }
+
+    @Override
+    public void loadSaleSuccess(Sale sale) {
+        this.sale = sale;
+        view.loadSaleSuccess();
+    }
+
     public void saveSale() {
         if (sale.getProducts() == null){
             view.saveSaleFail("product");

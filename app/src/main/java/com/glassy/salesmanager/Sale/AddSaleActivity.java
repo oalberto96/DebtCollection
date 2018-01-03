@@ -13,6 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -37,6 +38,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     TextView tv_total;
     TextView tv_saleClient;
     EditText et_saleName;
+    Button btn_addSale;
 
     HashMap<Integer, String> s_map;
 
@@ -48,7 +50,23 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         tv_total = (TextView) findViewById(R.id.tv_total);
         tv_saleClient = (TextView) findViewById(R.id.tv_sale_client);
         et_saleName = (EditText) findViewById(R.id.et_sale_name);
+        btn_addSale = (Button) findViewById(R.id.btn_add_sale);
+        getExtraMessages();
         initRecyclerView(presenter.getProducts());
+    }
+
+    protected void getExtraMessages(){
+        Intent intent = getIntent();
+        String mode = intent.getStringExtra("mode");
+        if (mode != null){
+            switch (mode){
+                case "CREATE":
+                    break;
+                case "UPDATE":
+                    btn_addSale.setVisibility(View.INVISIBLE);
+                    presenter.retrieveSale(intent.getIntExtra("saleId",0));
+            }
+        }
     }
 
 
@@ -206,6 +224,26 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     @Override
     public void deleteSaleSucces() {
 
+    }
+
+    @Override
+    public void loadSaleSuccess() {
+        et_saleName.setText(presenter.getSale().getName());
+        tv_saleClient.setText(presenter.getSale().getClient().getFullName());
+    }
+
+    public void setTextQuantity(){
+        int countItems = productList.getLayoutManager().getChildCount();
+        for (int i = 0; i < countItems; i++ ){
+            LinearLayout linearLayout = (LinearLayout) productList.getLayoutManager().findViewByPosition(i);
+            EditText editText = (EditText) linearLayout.getChildAt(1);
+            try {
+                editText.setText(String.valueOf(presenter.getSale().getProduct_quantity()));
+            }
+            catch(Exception e){
+                editText.setText(String.valueOf(1));
+            }
+        }
     }
 
     @Override

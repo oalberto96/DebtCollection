@@ -195,7 +195,7 @@ public class SaleModel {
         return  product;
     }
 
-        public ArrayList<Sale> getSales() {
+    public ArrayList<Sale> getSales() {
         ArrayList<Sale> sales = new ArrayList<Sale>();
         db = dbHelper.getWritableDatabase();
         String query = "SELECT * FROM " +
@@ -222,6 +222,37 @@ public class SaleModel {
         }
         db.close();
         return sales;
+    }
+
+    public Sale getSale(int idSale){
+        Sale sale = null;
+        db = dbHelper.getWritableDatabase();
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Sale.TABLE_NAME +
+                " WHERE " +
+                DebtCollectionContract.Sale._ID + " = " + idSale + ";";
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToNext();
+                int saleId = cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Sale._ID));
+                ArrayList<Product> products = new ArrayList<>();
+                ArrayList<Integer> quantity = new ArrayList<>();
+                for (Sale.SaleProduct saleProduct: retrieveSaleProduct(saleId)){
+                    products.add(getProduct(saleProduct.productId));
+                    quantity.add(saleProduct.productQuantity);
+                }
+                sale = new Sale(
+                        saleId,
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Sale.COLUMN_NAME)),
+                        getClient(cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Sale.CLIENT_ID))),
+                        products,
+                        quantity,
+                        Timestamp.valueOf(cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Sale.COLUMN_DATE)))
+                );
+        }
+        db.close();
+        return sale;
     }
 
     public ArrayList<Sale.SaleProduct> retrieveSaleProduct(int saleIndex) {
@@ -253,5 +284,12 @@ public class SaleModel {
         db.execSQL(SQLScript);
         db.close();
         events.deleteSaleSuccess();
+    }
+
+    public void retrieveSale(int saleId) {
+        Sale sale = getSale(saleId);
+        if (sale != null){
+            events.loadSaleSuccess(sale);
+        }
     }
 }

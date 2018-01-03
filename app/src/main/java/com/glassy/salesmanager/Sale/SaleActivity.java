@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
@@ -114,7 +115,18 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     }
 
     @Override
-    public void onItemClickListener(int id) {
+    public void loadSaleSuccess() {
 
+    }
+
+    @Override
+    public void onItemClickListener(int id) {
+        Intent intent = new Intent(
+                this,
+                AddSaleActivity.class
+        );
+        intent.putExtra("mode","UPDATE");
+        intent.putExtra("saleId",id);
+        startActivity(intent);
     }
 }
