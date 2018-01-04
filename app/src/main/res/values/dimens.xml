@@ -2,6 +2,7 @@
 <resources>
     <dimen name="layout_margin">5dp</dimen>
     <dimen name="title_text">16sp</dimen>
+    <dimen name="title_margin">15dp</dimen>
     <dimen name="icon_size">25dp</dimen>
     <dimen name="icon_margin">15dp</dimen>
     <dimen name="line_margin">60dp</dimen>
