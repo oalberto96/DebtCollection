@@ -25,15 +25,16 @@ import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
 import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ProductAdapter;
+import com.glassy.salesmanager.UI.ProductSaleAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductAdapter.ListItemClickListener{
+public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener{
 
     SalePresenter presenter;
     RecyclerView productList;
-    ProductAdapter productAdapter;
+    ProductSaleAdapter productAdapter;
     Spinner s_clientList;
     TextView tv_total;
     TextView tv_saleClient;
@@ -123,7 +124,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         };
         productList.setLayoutManager(layoutManager);
         productList.setHasFixedSize(true);
-        productAdapter = new ProductAdapter(products, this);
+        productAdapter = new ProductSaleAdapter(products, this);
         productList.setAdapter(productAdapter);
     }
 

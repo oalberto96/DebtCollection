@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by glassy on 12/16/17.
  */
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientViewHolder>{
+public class ProductSaleAdapter extends RecyclerView.Adapter<ProductSaleAdapter.ClientViewHolder>{
 
     private ArrayList<Product> products;
 
@@ -26,7 +26,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
         void onItemClickListener(int id);
     }
 
-    public ProductAdapter(ArrayList<Product> products, ListItemClickListener onClickListener){
+    public ProductSaleAdapter(ArrayList<Product> products, ListItemClickListener onClickListener){
         this.products = products;
         this.onClickListener = onClickListener;
     }
@@ -35,7 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
     @Override
     public ClientViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.product_list_item;
+        int layoutIdForListItem = R.layout.product_sale_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
@@ -72,7 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ClientVi
 
         void bind(String productName, String productPrice) {
             this.tv_productName.setText(productName);
-            this.tv_productPrice.setText("$" + productPrice);
+            this.tv_productPrice.setText("$ " + productPrice);
         }
 
         @Override

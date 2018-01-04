@@ -7,4 +7,5 @@
     <dimen name="icon_margin">15dp</dimen>
     <dimen name="line_margin">60dp</dimen>
     <dimen name="padding_screen">10dp</dimen>
+    <dimen name="item_list_margin">15dp</dimen>
 </resources>
