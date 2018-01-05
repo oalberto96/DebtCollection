@@ -16,4 +16,6 @@ public interface ProductView {
     Context getContext();
 
     void loadProduct(Product product);
+
+    void updateProductSuccess();
 }

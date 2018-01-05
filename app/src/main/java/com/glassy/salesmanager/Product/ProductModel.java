@@ -100,4 +100,24 @@ public class ProductModel {
         db.close();
         events.loadProductSuccess(product);
     }
+
+    public void updateProduct(Product product) {
+        db = dbHelper.getWritableDatabase();
+        String query = "UPDATE " + DebtCollectionContract.Product.TABLE_NAME + " SET " +
+                DebtCollectionContract.Product.COLUMN_NAME + " = " +
+                "\"" + product.getName() + "\", " +
+                DebtCollectionContract.Product.COLUMN_PRICE + " = " +
+                "\"" + String.valueOf(product.getPrice()) + "\", " +
+                DebtCollectionContract.Product.COLUMN_COLOR + " = " +
+                "\"" + product.getColor() + "\", " +
+                DebtCollectionContract.Product.COLUMN_SIZE + " = " +
+                "\"" + product.getSize() + "\", " +
+                DebtCollectionContract.Product.COLUMN_MATERIAL + " = " +
+                "\"" + product.getMaterial() + "\" " +
+                "WHERE " + DebtCollectionContract.Product._ID + " = " +
+                product.getId() + ";";
+        db.execSQL(query);
+        db.close();
+        events.updateProductSuccess();
+    }
 }

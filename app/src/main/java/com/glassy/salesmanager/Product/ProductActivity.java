@@ -42,6 +42,8 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
             Product product = data.getParcelableExtra("newProduct");
             presenter.addNewProduct(product);
         }
+        if (requestCode == 3 && resultCode == RESULT_OK){
+        }
     }
 
     @Override
@@ -82,9 +84,14 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
     }
 
     @Override
+    public void updateProductSuccess() {
+
+    }
+
+    @Override
     public void onItemClickListener(int id) {
         Intent intent = new Intent(this,ReadProductActivity.class);
         intent.putExtra("productId",id);
-        startActivity(intent);
+        startActivityForResult(intent,3);
     }
 }

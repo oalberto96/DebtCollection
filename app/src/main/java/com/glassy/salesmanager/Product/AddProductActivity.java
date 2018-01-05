@@ -1,5 +1,6 @@
 package com.glassy.salesmanager.Product;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,17 @@ import android.widget.EditText;
 
 import com.glassy.salesmanager.R;
 
-public class AddProductActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class AddProductActivity extends AppCompatActivity implements ProductView{
+    Product product;
+
+    ProductPresenter presenter;
+
     Button btnAddNewProduct;
+    Button btnUpdateProduct;
     EditText productName;
-    EditText productPrize;
+    EditText productPrice;
     EditText productColor;
     EditText productSize;
     EditText productMaterial;
@@ -24,11 +32,15 @@ public class AddProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_product);
 
         productName = (EditText) findViewById(R.id.et_product_name);
-        productPrize = (EditText) findViewById(R.id.et_product_price);
+        productPrice = (EditText) findViewById(R.id.et_product_price);
         productColor = (EditText) findViewById(R.id.et_product_color);
         productSize = (EditText) findViewById(R.id.et_product_size);
         productMaterial = (EditText) findViewById(R.id.et_product_material);
         btnAddNewProduct = (Button) findViewById(R.id.btn_new_product);
+        btnUpdateProduct = (Button) findViewById(R.id.btn_update_product);
+
+        presenter = new ProductPresenter(this);
+        getExtraMessages();
     }
 
     private void getExtraMessages(){
@@ -37,7 +49,11 @@ public class AddProductActivity extends AppCompatActivity {
         if (mode != null){
             switch (mode){
                 case "CREATE":
+                    btnUpdateProduct.setVisibility(View.GONE);
                     break;
+                case "UPDATE":
+                    btnAddNewProduct.setVisibility(View.GONE);
+                    presenter.getProduct(intent.getIntExtra("productId",0));
             }
         }
     }
@@ -45,7 +61,7 @@ public class AddProductActivity extends AppCompatActivity {
     public void onClickbtnAddNewProduct(View view){
         Product product = new Product(
                 productName.getText().toString(),
-                Float.parseFloat(productPrize.getText().toString()),
+                Float.parseFloat(productPrice.getText().toString()),
                 productColor.getText().toString(),
                 productSize.getText().toString(),
                 productMaterial.getText().toString()
@@ -55,5 +71,56 @@ public class AddProductActivity extends AppCompatActivity {
         setResult(RESULT_OK,intent);
         onBackPressed();
     }
+
+    public void onClickbtnUpdateProduct(View view){
+        product = new Product(
+                product.getId(),
+                productName.getText().toString(),
+                Float.parseFloat(productPrice.getText().toString()),
+                productColor.getText().toString(),
+                productSize.getText().toString(),
+                productMaterial.getText().toString()
+        );
+        presenter.updateProduct(product);
+    }
+
+    @Override
+    public void loadProductsList(ArrayList<Product> products) {
+
+    }
+
+    @Override
+    public void readProduct(Product product) {
+
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void loadProduct(Product product) {
+        fillForm(product);
+    }
+
+    @Override
+    public void updateProductSuccess() {
+        Intent intent = new Intent();
+        intent.putExtra("PRODUCT",(Parcelable) product);
+        setResult(RESULT_OK,intent);
+        onBackPressed();
+    }
+
+    private void fillForm(Product product) {
+        this.product = product;
+
+        productName.setText(product.getName());
+        productPrice.setText(String.valueOf(product.getPrice()));
+        productColor.setText(product.getColor());
+        productSize.setText(product.getSize());
+        productMaterial.setText(product.getMaterial());
+    }
+
 
 }

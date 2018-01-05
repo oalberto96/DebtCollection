@@ -47,6 +47,16 @@ public class ProductPresenter implements ProductEvents {
         view.loadProduct(product);
     }
 
+    @Override
+    public void updateProduct(Product product) {
+        model.updateProduct(product);
+    }
+
+    @Override
+    public void updateProductSuccess() {
+        view.updateProductSuccess();
+    }
+
     public void getProduct(int id) {
         model.getProduct(id);
     }

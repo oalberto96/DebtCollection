@@ -45,6 +45,13 @@ public class ReadProductActivity extends AppCompatActivity implements ProductVie
         presenter.getProduct(id);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            Product product = data.getParcelableExtra("PRODUCT");
+            fillForm(product);
+        }
+    }
 
     @Override
     public void loadProductsList(ArrayList<Product> products) {
@@ -66,7 +73,13 @@ public class ReadProductActivity extends AppCompatActivity implements ProductVie
         fillForm(product);
     }
 
+    @Override
+    public void updateProductSuccess() {
+
+    }
+
     private void fillForm(Product product) {
+        this.product = product;
         tvProductName.setText(product.getName());
         tvProductPrice.setText(String.valueOf(product.getPrice()));
         tvProductColor.setText(product.getColor());
@@ -75,6 +88,9 @@ public class ReadProductActivity extends AppCompatActivity implements ProductVie
     }
 
     public void onClickbtnEditProduct(View view){
-        Toast.makeText(this, "Edit Proocut", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, AddProductActivity.class);
+        intent.putExtra("mode", "UPDATE");
+        intent.putExtra("productId", product.getId());
+        startActivityForResult(intent,1);
     }
 }

@@ -17,4 +17,8 @@ public interface ProductEvents {
     Context getContext();
 
     void loadProductSuccess(Product product);
+
+    void updateProduct(Product product);
+
+    void updateProductSuccess();
 }
