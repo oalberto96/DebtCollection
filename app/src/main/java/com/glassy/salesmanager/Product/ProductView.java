@@ -14,4 +14,6 @@ public interface ProductView {
     void loadProductsList(ArrayList<Product> products);
     void readProduct(Product product);
     Context getContext();
+
+    void loadProduct(Product product);
 }

@@ -22,7 +22,8 @@
         <activity android:name=".Product.ProductActivity" />
         <activity android:name=".Sale.SaleActivity" />
         <activity android:name=".Product.AddProductActivity" />
-        <activity android:name=".Sale.AddSaleActivity"></activity>
+        <activity android:name=".Sale.AddSaleActivity" />
+        <activity android:name=".Product.ReadProductActivity"></activity>
     </application>
 
 </manifest>

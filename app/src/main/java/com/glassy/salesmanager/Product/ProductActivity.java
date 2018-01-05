@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ProductAdapter;
@@ -76,7 +77,14 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
     }
 
     @Override
-    public void onItemClickListener(int id) {
+    public void loadProduct(Product product) {
 
+    }
+
+    @Override
+    public void onItemClickListener(int id) {
+        Intent intent = new Intent(this,ReadProductActivity.class);
+        intent.putExtra("productId",id);
+        startActivity(intent);
     }
 }

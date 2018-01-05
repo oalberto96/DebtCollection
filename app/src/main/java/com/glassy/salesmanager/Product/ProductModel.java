@@ -77,4 +77,27 @@ public class ProductModel {
         db.close();
         return products;
     }
+
+    public void getProduct(int id) {
+        db = dbHelper.getWritableDatabase();
+        Product product = null;
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Product.TABLE_NAME +
+                " WHERE "+
+                DebtCollectionContract.Product._ID+" = " + id;
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            cursor.moveToNext();
+            product = new Product(
+                    cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Product._ID)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_NAME)),
+                    cursor.getFloat(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_PRICE)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_COLOR)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_SIZE)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_MATERIAL))
+            );
+        }
+        db.close();
+        events.loadProductSuccess(product);
+    }
 }

@@ -15,4 +15,6 @@ public interface ProductEvents {
     void addNewProduct(Product newProduct);
     void addNewProductSuccess();
     Context getContext();
+
+    void loadProductSuccess(Product product);
 }

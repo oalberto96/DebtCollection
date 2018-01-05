@@ -41,4 +41,13 @@ public class ProductPresenter implements ProductEvents {
     public Context getContext() {
         return view.getContext();
     }
+
+    @Override
+    public void loadProductSuccess(Product product) {
+        view.loadProduct(product);
+    }
+
+    public void getProduct(int id) {
+        model.getProduct(id);
+    }
 }
