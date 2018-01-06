@@ -1,5 +1,6 @@
 package com.glassy.salesmanager.Sale;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -28,20 +30,21 @@ import com.glassy.salesmanager.UI.ProductAdapter;
 import com.glassy.salesmanager.UI.ProductSaleAdapter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
-public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener{
+public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener, DatePickerDialog.OnDateSetListener{
 
     SalePresenter presenter;
     RecyclerView productList;
     ProductSaleAdapter productAdapter;
-    Spinner s_clientList;
     TextView tv_total;
     TextView tv_saleClient;
+    TextView tvSaleDate;
     EditText et_saleName;
     Button btn_addSale;
-
-    HashMap<Integer, String> s_map;
+    DatePickerDialog datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +53,12 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         presenter = new SalePresenter(this);
         tv_total = (TextView) findViewById(R.id.tv_total);
         tv_saleClient = (TextView) findViewById(R.id.tv_sale_client);
+        tvSaleDate = (TextView) findViewById(R.id.tv_sale_date);
         et_saleName = (EditText) findViewById(R.id.et_sale_name);
         btn_addSale = (Button) findViewById(R.id.btn_add_sale);
         getExtraMessages();
         initRecyclerView(presenter.getProducts());
+        datepickerInit();
     }
 
     protected void getExtraMessages(){
@@ -70,6 +75,30 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         }
     }
 
+    public void datepickerInit(){
+        Calendar now = Calendar.getInstance();
+        tvSaleDate.setText("" + now.get(Calendar.YEAR) + "-" + now.get(Calendar.MONTH) + "-" + now.get(Calendar.DAY_OF_MONTH));
+        datePicker = new DatePickerDialog(
+                getContext(), this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public void onClickDatePicker(View view){
+        datePicker.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR,year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        presenter.getSale().setDateSale(calendar.getTime());
+
+        tvSaleDate.setText("" + year + "-" + month + 1 + "-" + dayOfMonth);
+    }
 
     @Override
     public void loadSaleList(ArrayList<Sale> sales) {
@@ -107,7 +136,6 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
             public void onClick(DialogInterface dialog, int position) {
                 Product product = products.get(position);
                 presenter.addProduct(product,getQuantity());
-                //Toast.makeText(getContext(),"" + products.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
         builder.show();
@@ -251,4 +279,5 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     public void onItemClickListener(int id) {
 
     }
+
 }

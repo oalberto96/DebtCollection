@@ -11,6 +11,7 @@ import com.glassy.salesmanager.data.DebtCollectionContract;
 import com.glassy.salesmanager.data.DebtCollectionDBHelper;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -136,9 +137,11 @@ public class SaleModel {
         db = dbHelper.getWritableDatabase();
         String dbInsert = "INSERT INTO " + DebtCollectionContract.Sale.TABLE_NAME + " (" +
                 DebtCollectionContract.Sale.COLUMN_NAME + ", " +
+                DebtCollectionContract.Sale.COLUMN_DATE + ", " +
                 DebtCollectionContract.Sale.CLIENT_ID +
                 ") VALUES (" + "\"" +
                 sale.getName() + "\", \"" +
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(sale.getDateSale()) + "\", \"" +
                 sale.getClient().getId() +
                 "\");";
         db.execSQL(dbInsert);
