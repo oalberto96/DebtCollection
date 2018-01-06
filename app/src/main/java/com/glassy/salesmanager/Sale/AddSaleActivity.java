@@ -4,37 +4,33 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
 import com.glassy.salesmanager.R;
-import com.glassy.salesmanager.UI.ProductAdapter;
 import com.glassy.salesmanager.UI.ProductSaleAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
+
 
 public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener, DatePickerDialog.OnDateSetListener{
+
 
     SalePresenter presenter;
     RecyclerView productList;
@@ -166,8 +162,14 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         ArrayList<Integer> quantity = new ArrayList<>();
         int countItems = productList.getLayoutManager().getChildCount();
         if (countItems > 0 ){
+
             LinearLayout linearLayout = (LinearLayout) productList.getLayoutManager().findViewByPosition(countItems - 1);
+            CardView cv = (CardView) linearLayout.getChildAt(0);
+            linearLayout = (LinearLayout) cv.getChildAt(0);
+            linearLayout = (LinearLayout) linearLayout.getChildAt(2);
+            linearLayout = (LinearLayout) linearLayout.getChildAt(1);
             EditText editText = (EditText) linearLayout.getChildAt(1);
+
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -185,7 +187,6 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
             });
         }
     }
-
 
     public void populateClientList(final ArrayList<Client> clients){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -210,7 +211,12 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         int countItems = productList.getLayoutManager().getChildCount();
         for (int i = 0; i < countItems; i++ ){
             LinearLayout linearLayout = (LinearLayout) productList.getLayoutManager().findViewByPosition(i);
+            CardView cv = (CardView) linearLayout.getChildAt(0);
+            linearLayout = (LinearLayout) cv.getChildAt(0);
+            linearLayout = (LinearLayout) linearLayout.getChildAt(2);
+            linearLayout = (LinearLayout) linearLayout.getChildAt(1);
             EditText editText = (EditText) linearLayout.getChildAt(1);
+
             try {
                 quantity.add(Integer.parseInt(editText.getText().toString()));
             }

@@ -42,5 +42,7 @@
     <string name="sale_name">Sale Name</string>
     <string name="edit_product">Edit product</string>
     <string name="btn_update_product">Update product</string>
+    <string name="date">Date</string>
+    <string name="product_quantity">Quantity</string>
 
 </resources>
