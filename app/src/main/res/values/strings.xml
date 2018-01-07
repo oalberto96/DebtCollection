@@ -44,5 +44,6 @@
     <string name="btn_update_product">Update product</string>
     <string name="date">Date</string>
     <string name="product_quantity">Quantity</string>
+    <string name="stats">Stats</string>
 
 </resources>

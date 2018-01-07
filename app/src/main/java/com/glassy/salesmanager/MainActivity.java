@@ -8,6 +8,7 @@ import android.view.View;
 import com.glassy.salesmanager.Client.ClientActivity;
 import com.glassy.salesmanager.Product.ProductActivity;
 import com.glassy.salesmanager.Sale.SaleActivity;
+import com.glassy.salesmanager.Stats.StatsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(
                 this,
                 SaleActivity.class
+        ));
+    }
+
+    public void onClickbtnStats(View view){
+        startActivity(new Intent(
+                this,
+                StatsActivity.class
         ));
     }
 
