@@ -39,6 +39,9 @@ public class Sale implements Parcelable {
         this.dateSale = dateSale;
     }
 
+    public Sale(Timestamp date){
+        this.dateSale = date;
+    }
     public Sale(int id, String name, Client client, Timestamp date){
         this.id = id;
         this.client = client;
