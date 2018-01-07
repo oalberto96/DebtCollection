@@ -49,5 +49,6 @@
     <string name="second_week">2nd</string>
     <string name="third_week">3rd</string>
     <string name="fourth_week">4th</string>
+    <string name="graph_title">Last month sales</string>
 
 </resources>
