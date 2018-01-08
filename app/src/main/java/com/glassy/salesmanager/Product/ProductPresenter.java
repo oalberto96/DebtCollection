@@ -11,10 +11,16 @@ import java.util.ArrayList;
 public class ProductPresenter implements ProductEvents {
     protected final ProductModel model;
     protected final ProductView view;
+    protected int idToDelete;
 
     public ProductPresenter(ProductView view) {
         this.view = view;
         this.model = new ProductModel(this);
+        model.loadProductsList();
+        idToDelete = -1;
+    }
+
+    public void loadProductList(){
         model.loadProductsList();
     }
 
@@ -36,6 +42,7 @@ public class ProductPresenter implements ProductEvents {
     public void addNewProductSuccess() {
         model.loadProductsList();
     }
+
 
     @Override
     public Context getContext() {
@@ -59,5 +66,21 @@ public class ProductPresenter implements ProductEvents {
 
     public void getProduct(int id) {
         model.getProduct(id);
+    }
+
+
+    public void addItemToList(int id) {
+        idToDelete = id;
+
+    }
+
+    public void deleteItemFromList() {
+        idToDelete = -1;
+    }
+
+    public void cleanList() {
+        if (idToDelete >= 0){
+            deleteClient(idToDelete);
+        }
     }
 }
