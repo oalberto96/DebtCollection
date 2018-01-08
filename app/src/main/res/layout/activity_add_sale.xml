@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/layout_margin"
+        android:orientation="vertical"
+        android:id="@+id/sale_activity_layout"
+        tools:context="com.glassy.salesmanager.Sale.AddSaleActivity">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_sale_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/sale_name"
+                android:inputType="textCapWords" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickbtnSelectClient"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_margin="@dimen/icon_margin"
+                android:src="@drawable/ic_account_circle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/client"
+                    android:textSize="@dimen/title_text" />
+
+                <TextView
+                    android:id="@+id/tv_sale_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/title_text" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin"
+            android:onClick="onClickDatePicker"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_margin="@dimen/icon_margin"
+                android:src="@drawable/ic_date_range" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/date"
+                    android:textSize="@dimen/title_text" />
+
+                <TextView
+                    android:id="@+id/tv_sale_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:hint="Date"
+                    android:textSize="@dimen/title_text" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/title_margin"
+            android:text="@string/products"
+            android:textSize="@dimen/title_text" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_sales_products"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rv_products">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/btn_add_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickbtnAddProduct"
+            android:text="@string/btn_save_product" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/title_text"
+                android:text="Total" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/title_text"
+                android:gravity="right"
+                android:text="Total" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_add_sale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickbtnAddSale"
+            android:text="@string/save_sale" />
+
+    </LinearLayout>
+</ScrollView>

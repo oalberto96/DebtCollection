@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.glassy.salesmanager.MVP.Models.Client;
+import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.R;
 
 import java.util.ArrayList;
@@ -20,8 +20,15 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
 
     private ArrayList<Client> clients;
 
-    public ClientAdapter(ArrayList<Client> clients){
+    private final ListItemClickListener onClickListener;
+
+    public interface ListItemClickListener{
+        void onItemClickListener(int id);
+    }
+
+    public ClientAdapter(ArrayList<Client> clients, ListItemClickListener onClickListener){
         this.clients = clients;
+        this.onClickListener = onClickListener;
     }
 
 
@@ -43,6 +50,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
                 client.getFirst_name(),
                 client.getLast_name()
         );
+        holder.itemView.setTag(client.getId());
 
     }
 
@@ -51,15 +59,22 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         return clients.size();
     }
 
-    public class ClientViewHolder extends RecyclerView.ViewHolder{
+    public class ClientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tv_firstName;
         public ClientViewHolder(View itemView) {
             super(itemView);
             tv_firstName = (TextView) itemView.findViewById(R.id.tv_item_first_name);
+            itemView.setOnClickListener(this);
         }
 
         void bind(String tv_firstName, String tv_lastName) {
             this.tv_firstName.setText(tv_firstName + " " + tv_lastName);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int id = (int) v.getTag();
+            onClickListener.onItemClickListener(id);
         }
     }
 

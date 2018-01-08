@@ -9,14 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ClientActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Client.ClientActivity" />
+        <activity android:name=".Client.AddClientActivity" />
+        <activity android:name=".Client.ReadClientActivity" />
+        <activity android:name=".Product.ProductActivity" />
+        <activity android:name=".Sale.SaleActivity" />
+        <activity android:name=".Product.AddProductActivity" />
+        <activity android:name=".Sale.AddSaleActivity" />
+        <activity android:name=".Product.ReadProductActivity" />
+        <activity android:name=".Stats.StatsActivity"></activity>
     </application>
 
 </manifest>
