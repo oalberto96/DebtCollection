@@ -38,31 +38,25 @@ public class SalePresenter implements SaleEvents {
         return sale.getProducts();
     }
 
-    public void getTotal(ArrayList<Integer> quantity){
+    public void getTotal(){
         float total = 0;
         int i = 0;
         for (Product aux: sale.getProducts()){
-            total += aux.getPrice() * quantity.get(i);
+            total += aux.getPrice() * sale.getProduct_quantity().get(i);
             i++;
         }
-        sale.setQuantity(quantity);
         view.printTotal(total);
     }
 
-    public void addProduct(Product product, ArrayList<Integer> quantity) {
-        float total = 0;
-        int i = 0;
+    public void addProduct(Product product) {
         for (Product aux: sale.getProducts()){
             if(aux.getId() == product.getId()){
                 return;
             }
-            total += aux.getPrice() * quantity.get(i);
         }
-        sale.setQuantity(quantity);
-        total += product.getPrice();
+        sale.getProduct_quantity().add(1);
         sale.addProduct(product);
         view.productAdded(sale.getProducts());
-        view.printTotal(total);
     }
 
     @Override

@@ -33,6 +33,7 @@ public class Sale implements Parcelable {
 
     public Sale(){
         products = new ArrayList<>();
+        product_quantity = new ArrayList<>();
     }
 
     public void setDateSale(Date dateSale){

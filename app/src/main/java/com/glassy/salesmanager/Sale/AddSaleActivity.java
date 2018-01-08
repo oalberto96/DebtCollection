@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -29,11 +30,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener, DatePickerDialog.OnDateSetListener{
+public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener, ProductSaleAdapter.TotalListener, DatePickerDialog.OnDateSetListener{
 
 
     SalePresenter presenter;
     RecyclerView productList;
+    LinearLayoutManager linearLayoutManager;
+    int childCount;
     ProductSaleAdapter productAdapter;
     TextView tv_total;
     TextView tv_saleClient;
@@ -46,6 +49,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sale);
+        childCount = 0;
         presenter = new SalePresenter(this);
         tv_total = (TextView) findViewById(R.id.tv_total);
         tv_saleClient = (TextView) findViewById(R.id.tv_sale_client);
@@ -53,7 +57,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         et_saleName = (EditText) findViewById(R.id.et_sale_name);
         btn_addSale = (Button) findViewById(R.id.btn_add_sale);
         getExtraMessages();
-        initRecyclerView(presenter.getProducts());
+        initRecyclerView(presenter.getProducts(), presenter.getSale().getProduct_quantity());
         datepickerInit();
     }
 
@@ -131,62 +135,36 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
             @Override
             public void onClick(DialogInterface dialog, int position) {
                 Product product = products.get(position);
-                presenter.addProduct(product,getQuantity());
+                presenter.addProduct(product);
             }
         });
         builder.show();
     }
 
-    public void initRecyclerView(ArrayList<Product> products){
+    public void initRecyclerView(ArrayList<Product> products, ArrayList<Integer> quantity){
         productList = (RecyclerView) findViewById(R.id.rv_sales_products);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this){
+        linearLayoutManager = new LinearLayoutManager(this){
             @Override
             public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
                 super.onLayoutChildren(recycler, state);
-                changedTextView();
+                if (childCount != presenter.getSale().products.size()){
+                    productAdapter.lock = false;
+                    childCount = presenter.getSale().products.size();
+                }
             }
         };
-        productList.setLayoutManager(layoutManager);
+        productList.setLayoutManager(linearLayoutManager);
         productList.setHasFixedSize(true);
-        productAdapter = new ProductSaleAdapter(products, this);
+        productAdapter = new ProductSaleAdapter(products, quantity, this, this);
         productList.setAdapter(productAdapter);
     }
 
     @Override
     public void productAdded(ArrayList<Product> products){
+        productAdapter.lock = true;
         productAdapter.notifyDataSetChanged();
-        //initRecyclerView(products);
     }
 
-    public void changedTextView() {
-        ArrayList<Integer> quantity = new ArrayList<>();
-        int countItems = productList.getLayoutManager().getChildCount();
-        if (countItems > 0 ){
-
-            LinearLayout linearLayout = (LinearLayout) productList.getLayoutManager().findViewByPosition(countItems - 1);
-            CardView cv = (CardView) linearLayout.getChildAt(0);
-            linearLayout = (LinearLayout) cv.getChildAt(0);
-            linearLayout = (LinearLayout) linearLayout.getChildAt(2);
-            linearLayout = (LinearLayout) linearLayout.getChildAt(1);
-            EditText editText = (EditText) linearLayout.getChildAt(1);
-
-            editText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    presenter.getTotal(getQuantity());
-                }
-            });
-        }
-    }
 
     public void populateClientList(final ArrayList<Client> clients){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -204,27 +182,6 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
             }
         });
         builder.show();
-    }
-
-    public ArrayList<Integer> getQuantity(){
-        ArrayList<Integer> quantity = new ArrayList<>();
-        int countItems = productList.getLayoutManager().getChildCount();
-        for (int i = 0; i < countItems; i++ ){
-            LinearLayout linearLayout = (LinearLayout) productList.getLayoutManager().findViewByPosition(i);
-            CardView cv = (CardView) linearLayout.getChildAt(0);
-            linearLayout = (LinearLayout) cv.getChildAt(0);
-            linearLayout = (LinearLayout) linearLayout.getChildAt(2);
-            linearLayout = (LinearLayout) linearLayout.getChildAt(1);
-            EditText editText = (EditText) linearLayout.getChildAt(1);
-
-            try {
-                quantity.add(Integer.parseInt(editText.getText().toString()));
-            }
-            catch(Exception e){
-                quantity.add(1);
-            }
-        }
-        return quantity;
     }
 
     public void onClickbtnAddSale(View view){
@@ -267,23 +224,13 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         tv_saleClient.setText(presenter.getSale().getClient().getFullName());
     }
 
-    public void setTextQuantity(){
-        int countItems = productList.getLayoutManager().getChildCount();
-        for (int i = 0; i < countItems; i++ ){
-            LinearLayout linearLayout = (LinearLayout) productList.getLayoutManager().findViewByPosition(i);
-            EditText editText = (EditText) linearLayout.getChildAt(1);
-            try {
-                editText.setText(String.valueOf(presenter.getSale().getProduct_quantity()));
-            }
-            catch(Exception e){
-                editText.setText(String.valueOf(1));
-            }
-        }
-    }
-
     @Override
     public void onItemClickListener(int id) {
 
     }
 
+    @Override
+    public void onViewTextChangedListener() {
+        presenter.getTotal();
+    }
 }
