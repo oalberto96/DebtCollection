@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/layout_margin"
         android:orientation="vertical"
+        android:id="@+id/sale_activity_layout"
         tools:context="com.glassy.salesmanager.Sale.AddSaleActivity">
 
         <android.support.design.widget.TextInputLayout

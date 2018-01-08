@@ -16,6 +16,7 @@ public class SalePresenter implements SaleEvents {
     protected final SaleModel model;
     protected final SaleView view;
     protected Sale sale;
+    protected int idToRemove;
 
 
     public SalePresenter(SaleView view) {
@@ -23,6 +24,7 @@ public class SalePresenter implements SaleEvents {
         this.model = new SaleModel(this);
         model.loadSaleList();
         this.sale = new Sale();
+        idToRemove = -1;
     }
 
     public void addClient(Client client) {
@@ -144,5 +146,22 @@ public class SalePresenter implements SaleEvents {
 
     public void deleteSale(int id) {
         model.deleteSale(id);
+    }
+
+    public void addItemToList(int id) {
+        idToRemove = id;
+    }
+
+    public void deleteItemFromList() {
+        idToRemove = -1;
+    }
+
+    public void cleanList() {
+        if (idToRemove >= 0){
+            sale.getProducts().remove(idToRemove);
+            sale.getProduct_quantity().remove(idToRemove);
+            idToRemove = 0;
+            view.refreshProductList();
+        }
     }
 }

@@ -120,6 +120,11 @@ public class SaleActivity extends AppCompatActivity implements SaleView, SaleAda
     }
 
     @Override
+    public void refreshProductList() {
+        
+    }
+
+    @Override
     public void onItemClickListener(int id) {
         Intent intent = new Intent(
                 this,

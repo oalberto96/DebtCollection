@@ -4,12 +4,15 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -170,6 +173,38 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         productList.setHasFixedSize(true);
         productAdapter = new ProductSaleAdapter(products, quantity, this, this);
         productList.setAdapter(productAdapter);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                int id = viewHolder.getAdapterPosition();
+                showDeleteSnackbar(id);
+            }
+        }).attachToRecyclerView(productList);
+    }
+
+    private void showDeleteSnackbar(int id) {
+        presenter.addItemToList(id);
+        Snackbar.make(findViewById(R.id.sale_activity_layout),
+                R.string.client_deleted,
+                Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        presenter.deleteItemFromList();
+                        refreshProductList();
+                    }
+                }).addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+            @Override
+            public void onDismissed(Snackbar transientBottomBar, int event) {
+                super.onDismissed(transientBottomBar, event);
+                presenter.cleanList();
+            }
+        }).show();
     }
 
     @Override
@@ -238,6 +273,11 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         tv_saleClient.setText(presenter.getSale().getClient().getFullName());
         datepickerInit(presenter.getSale().getDateSale());
         presenter.getTotal();
+    }
+
+    @Override
+    public void refreshProductList() {
+        productAdapter.notifyDataSetChanged();
     }
 
     @Override

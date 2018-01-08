@@ -26,4 +26,6 @@ public interface SaleView {
     void deleteSaleSucces();
 
     void loadSaleSuccess();
+
+    void refreshProductList();
 }
