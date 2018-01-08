@@ -65,20 +65,23 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ClientViewHold
         TextView tv_saleName;
         TextView tv_saleClient;
         TextView tv_saleDate;
+        TextView tv_total;
         public ClientViewHolder(View itemView) {
             super(itemView);
             tv_saleName = (TextView) itemView.findViewById(R.id.tv_item_sale_name);
             tv_saleClient = (TextView) itemView.findViewById(R.id.tv_item_sale_client);
             tv_saleDate = (TextView) itemView.findViewById(R.id.tv_item_sale_date);
+            tv_total = (TextView) itemView.findViewById(R.id.tv_total);
 
             itemView.setOnClickListener(this);
         }
 
 
         void bind(String saleName, String total, String saleClient, String saleDate) {
-            this.tv_saleName.setText(saleName + " Total: " + total);
+            this.tv_saleName.setText(saleName);
             this.tv_saleClient.setText(saleClient);
             this.tv_saleDate.setText(saleDate);
+            this.tv_total.setText("$" + total);
         }
 
         @Override

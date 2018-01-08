@@ -28,6 +28,7 @@ import com.glassy.salesmanager.UI.ProductSaleAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class AddSaleActivity extends AppCompatActivity implements SaleView, ProductSaleAdapter.ListItemClickListener, ProductSaleAdapter.TotalListener, DatePickerDialog.OnDateSetListener{
@@ -56,9 +57,9 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         tvSaleDate = (TextView) findViewById(R.id.tv_sale_date);
         et_saleName = (EditText) findViewById(R.id.et_sale_name);
         btn_addSale = (Button) findViewById(R.id.btn_add_sale);
+        datepickerInit();
         getExtraMessages();
         initRecyclerView(presenter.getProducts(), presenter.getSale().getProduct_quantity());
-        datepickerInit();
     }
 
     protected void getExtraMessages(){
@@ -75,9 +76,21 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
         }
     }
 
+    public void datepickerInit(Date date){
+        Calendar now = Calendar.getInstance();
+        now.setTime(date);
+        tvSaleDate.setText("" + now.get(Calendar.YEAR) + "-" + (now.get(Calendar.MONTH) + 1) + "-" + now.get(Calendar.DAY_OF_MONTH));
+        datePicker = new DatePickerDialog(
+                getContext(), this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH));
+    }
+
+
     public void datepickerInit(){
         Calendar now = Calendar.getInstance();
-        tvSaleDate.setText("" + now.get(Calendar.YEAR) + "-" + now.get(Calendar.MONTH) + "-" + now.get(Calendar.DAY_OF_MONTH));
+        tvSaleDate.setText("" + now.get(Calendar.YEAR) + "-" + (now.get(Calendar.MONTH) + 1) + "-" + now.get(Calendar.DAY_OF_MONTH));
         datePicker = new DatePickerDialog(
                 getContext(), this,
                 now.get(Calendar.YEAR),
@@ -163,6 +176,7 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     public void productAdded(ArrayList<Product> products){
         productAdapter.lock = true;
         productAdapter.notifyDataSetChanged();
+        presenter.getTotal();
     }
 
 
@@ -222,6 +236,8 @@ public class AddSaleActivity extends AppCompatActivity implements SaleView, Prod
     public void loadSaleSuccess() {
         et_saleName.setText(presenter.getSale().getName());
         tv_saleClient.setText(presenter.getSale().getClient().getFullName());
+        datepickerInit(presenter.getSale().getDateSale());
+        presenter.getTotal();
     }
 
     @Override
