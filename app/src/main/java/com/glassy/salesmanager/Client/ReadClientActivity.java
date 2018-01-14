@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,15 +22,17 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
     TextView tvTIN;
     TextView tvNotes;
     CardView cvClientName;
-    CardView cvClientAddress;
-    CardView cvClientPhoneN;
-    CardView cvClientTin;
     private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_client);
+
+        Toolbar actionbar = (Toolbar) findViewById(R.id.my_action_bar);
+        setSupportActionBar(actionbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         presenter = new ClientPresenter(this);
 
         tvFirstName = (TextView) findViewById(R.id.tv_first_name);
@@ -38,7 +40,6 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
         tvPhoneNumber = (TextView) findViewById(R.id.tv_phone_number);
         tvTIN = (TextView) findViewById(R.id.tv_tin);
         tvNotes = (TextView) findViewById(R.id.tv_notes);
-
         cvClientName = (CardView) findViewById(R.id.cv_client_name);
 
         getClientData();

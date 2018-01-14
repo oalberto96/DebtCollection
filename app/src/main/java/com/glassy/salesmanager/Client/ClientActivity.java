@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Toast;
 
 import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ClientAdapter;
@@ -26,6 +26,11 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
+
+        Toolbar actionbar = (Toolbar) findViewById(R.id.my_action_bar);
+        setSupportActionBar(actionbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         presenter = new ClientPresenter(this);
 
     }

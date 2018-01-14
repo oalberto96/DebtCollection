@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
+
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -11,6 +13,10 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.glassy.salesmanager.Client.AddClientActivity">
+
+        <include android:id="@+id/my_action_bar"
+            layout="@layout/actionbar">
+        </include>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

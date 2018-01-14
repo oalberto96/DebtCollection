@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Sales Manager</string>
     <string name="undo">Undo</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 
 
     <string name="client">Client</string>

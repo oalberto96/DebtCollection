@@ -3,7 +3,13 @@
 android:layout_width="match_parent"
 android:layout_height="match_parent"
     android:id="@+id/client_activity_layout">
+
+    <include android:id="@+id/my_action_bar"
+        layout="@layout/actionbar">
+    </include>
+
     <Button
+        android:layout_below="@id/my_action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_add_new_client"
