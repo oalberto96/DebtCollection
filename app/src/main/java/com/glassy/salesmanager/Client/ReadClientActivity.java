@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class ReadClientActivity extends AppCompatActivity implements ClientView {
     private ClientPresenter presenter;
+
     TextView tvFirstName;
     TextView tvAddress;
     TextView tvPhoneNumber;
@@ -54,17 +55,15 @@ public class ReadClientActivity extends AppCompatActivity implements ClientView 
     public void onClickbtnUpdateClient(View view){
         Intent intent = new Intent(
                 getApplicationContext(),
-                AddClientActivity.class);
-        intent.putExtra("mode","UPDATE");
-        intent.putExtra("client", (Parcelable) client);
+                EditClientActivity.class);
+        intent.putExtra("clientId", client.getId());
         startActivityForResult(intent,3);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 3 && resultCode == RESULT_OK){
-            Client new_client = data.getParcelableExtra("newClient");
-            presenter.updateClient(new_client);
+
         }
     }
 

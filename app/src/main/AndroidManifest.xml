@@ -30,6 +30,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Client.ClientActivity"></meta-data>
         </activity>
+        <activity android:name=".Client.EditClientActivity"
+            android:parentActivityName=".Client.ReadClientActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Client.ReadClientActivity"></meta-data>
+
+        </activity>
+
         <activity android:name=".Client.ReadClientActivity" />
         <activity android:name=".Product.ProductActivity" />
         <activity android:name=".Sale.SaleActivity" />
@@ -37,7 +46,6 @@
         <activity android:name=".Sale.AddSaleActivity" />
         <activity android:name=".Product.ReadProductActivity" />
         <activity android:name=".Stats.StatsActivity" />
-        <activity android:name=".Client.EditClientActivity"></activity>
     </application>
 
 </manifest>

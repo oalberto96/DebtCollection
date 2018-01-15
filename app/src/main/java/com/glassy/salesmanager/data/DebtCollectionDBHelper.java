@@ -2,6 +2,7 @@ package com.glassy.salesmanager.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -81,4 +82,39 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         db.insert(DebtCollectionContract.Client.TABLE_NAME,null,clientContentValues);
         db.close();
     }
+
+    public void updateClient(int idClient, ContentValues contentValues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(DebtCollectionContract.Client.TABLE_NAME,
+                contentValues,
+                DebtCollectionContract.Client._ID + "=" + idClient,
+                null);
+        db.close();
+    }
+
+    public Client getClient(int idClient) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Client client = null;
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Client.TABLE_NAME +
+                " WHERE " +
+                DebtCollectionContract.Client._ID + " = " + idClient;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToNext();
+            client = new Client(
+                    cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Client._ID)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_FIRST_NAME)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_LAST_NAME)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_ADDRESS)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_PHONE_NUMBER)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_NOTES)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_TIN))
+            );
+        }
+        db.close();
+        return client;
+    }
+
+
 }

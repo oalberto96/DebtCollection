@@ -102,4 +102,28 @@ public class Client extends User implements Parcelable {
     public String getFullName() {
         return first_name + " " + last_name ;
     }
+
+    public void setFirstName(String firstName) {
+        this.first_name = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.last_name = lastName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setTIN(String TIN) {
+        this.tin = TIN;
+    }
 }
