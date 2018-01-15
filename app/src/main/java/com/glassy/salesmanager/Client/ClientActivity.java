@@ -39,15 +39,13 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
         Intent intent = new Intent(
                 getApplicationContext(),
                 AddClientActivity.class);
-        intent.putExtra("mode","CREATE");
         startActivityForResult(intent,1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1 && resultCode == RESULT_OK){
-            Client new_client = data.getParcelableExtra("newClient");
-            presenter.addNewClient(new_client);
+            presenter.loadClients();
         }
     }
 

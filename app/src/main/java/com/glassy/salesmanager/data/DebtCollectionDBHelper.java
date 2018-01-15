@@ -1,9 +1,12 @@
 package com.glassy.salesmanager.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.glassy.salesmanager.Client.Client;
 
 /**
  * Created by glassy on 12/17/17.
@@ -71,5 +74,11 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXIST " + DebtCollectionContract.Client.TABLE_NAME);
         onCreate(sqLiteDatabase);
+    }
+
+    public void insertClient(ContentValues clientContentValues){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(DebtCollectionContract.Client.TABLE_NAME,null,clientContentValues);
+        db.close();
     }
 }

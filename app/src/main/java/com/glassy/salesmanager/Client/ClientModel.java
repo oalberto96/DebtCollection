@@ -19,10 +19,7 @@ public class ClientModel {
 
     public ClientModel(UserEvents events) {
         this.events = events;
-
         dbHelper = new DebtCollectionDBHelper(events.getAppContext());
-
-
     }
 
     public void loadClients(){
