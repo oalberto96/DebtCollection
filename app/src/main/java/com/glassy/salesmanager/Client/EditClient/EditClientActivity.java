@@ -1,4 +1,4 @@
-package com.glassy.salesmanager.Client;
+package com.glassy.salesmanager.Client.EditClient;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
+import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.R;
 
 public class EditClientActivity extends AppCompatActivity implements IEditclientAcitivtyView {

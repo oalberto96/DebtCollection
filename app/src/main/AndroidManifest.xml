@@ -24,22 +24,22 @@
                 android:value=".MainActivity"></meta-data>
         </activity>
         <activity
-            android:name=".Client.AddClientActivity"
+            android:name=".Client.AddClient.AddClientActivity"
             android:parentActivityName=".Client.ClientActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Client.ClientActivity"></meta-data>
         </activity>
-        <activity android:name=".Client.EditClientActivity"
-            android:parentActivityName=".Client.ReadClientActivity">
+        <activity android:name=".Client.EditClient.EditClientActivity"
+            android:parentActivityName=".Client.ReadClient.ReadClientActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Client.ReadClientActivity"></meta-data>
+                android:value=".Client.ReadClient.ReadClientActivity"></meta-data>
 
         </activity>
 
-        <activity android:name=".Client.ReadClientActivity" />
+        <activity android:name=".Client.ReadClient.ReadClientActivity" />
         <activity android:name=".Product.ProductActivity" />
         <activity android:name=".Sale.SaleActivity" />
         <activity android:name=".Product.AddProductActivity" />

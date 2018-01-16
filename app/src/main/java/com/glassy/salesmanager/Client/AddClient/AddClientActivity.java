@@ -1,8 +1,7 @@
-package com.glassy.salesmanager.Client;
+package com.glassy.salesmanager.Client.AddClient;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.R;
 
 public class AddClientActivity extends AppCompatActivity implements IAddClientActivityView {

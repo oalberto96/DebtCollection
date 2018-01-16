@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
+import com.glassy.salesmanager.Client.AddClient.AddClientActivity;
+import com.glassy.salesmanager.Client.ReadClient.ReadClientActivity;
 import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ClientAdapter;
 

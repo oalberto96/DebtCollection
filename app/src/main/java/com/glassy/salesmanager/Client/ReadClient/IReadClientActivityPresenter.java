@@ -1,14 +1,14 @@
-package com.glassy.salesmanager.Client;
+package com.glassy.salesmanager.Client.ReadClient;
 
 import android.content.Context;
+
+import com.glassy.salesmanager.Client.Client;
 
 /**
  * Created by glassy on 1/14/18.
  */
 
-interface IEditClientActivityPresenter {
+public interface IReadClientActivityPresenter {
     Context getActivityContext();
-    void updateClientSuccess();
-
     void getClientSuccess(Client client);
 }

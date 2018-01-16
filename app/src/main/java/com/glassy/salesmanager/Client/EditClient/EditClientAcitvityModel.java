@@ -1,7 +1,8 @@
-package com.glassy.salesmanager.Client;
+package com.glassy.salesmanager.Client.EditClient;
 
 import android.content.ContentValues;
 
+import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.data.DebtCollectionContract;
 import com.glassy.salesmanager.data.DebtCollectionDBHelper;
 

@@ -1,4 +1,4 @@
-package com.glassy.salesmanager.Client;
+package com.glassy.salesmanager.Client.AddClient;
 
 import android.content.Context;
 
