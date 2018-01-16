@@ -3,6 +3,8 @@ package com.glassy.salesmanager.Client;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by glassy on 12/16/17.
@@ -11,13 +13,16 @@ import java.util.ArrayList;
 public class ClientPresenter implements UserEvents{
     protected final ClientModel model;
     protected final ClientView view;
+    protected ArrayList<Client> clients;
 
     protected ArrayList<Integer> deleteClientList;
     
     public ClientPresenter(ClientView view) {
-        deleteClientList = new ArrayList<Integer>();
+        deleteClientList = new ArrayList<>();
+        clients = new ArrayList<>();
         this.view = view;
         this.model = new ClientModel(this);
+        this.view.initRecyclerView(this.clients);
         model.loadClients();
     }
 
@@ -41,36 +46,16 @@ public class ClientPresenter implements UserEvents{
     }
 
     @Override
-    public void addClientEvent() {
-        model.loadClients();
-    }
-
-    @Override
-    public void FailEvent() {
-    }
-
-    @Override
-    public void loadListSeller(ArrayList<Client> clients) {
+    public void loadClientListSuccess(ArrayList<Client> clients) {
         if(clients.size()>0){
-            view.loadListClient(clients);
+            this.clients.clear();
+            this.clients.addAll(clients);
+            view.refreshRecyclerView();
         }
     }
 
-    public void updateClient(Client client){
-        model.updateClient(client);
-    }
-
-    
-    
     public void deleteClient(int id){
         model.deleteClient(id);
-    }
-
-    public void readClient(int id){ model.readClient(id);}
-
-    @Override
-    public void addNewClient(Client newClient) {
-        model.createClient(newClient);
     }
 
     @Override
@@ -79,15 +64,9 @@ public class ClientPresenter implements UserEvents{
     }
 
     @Override
-    public void readClientSuccessEvent(Client client) {
-        view.readClient(client);
+    public void deleteClientSuccess() {
+        model.loadClients();
     }
-
-    @Override
-    public void updateClientSuccessEvent(int id) {
-        model.readClient(id);
-    }
-
 
 
 }

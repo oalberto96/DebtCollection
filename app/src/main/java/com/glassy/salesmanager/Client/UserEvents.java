@@ -11,11 +11,8 @@ import java.util.ArrayList;
  */
 
 public interface UserEvents {
-    public void addClientEvent();
-    public void FailEvent();
-    public void loadListSeller(ArrayList<Client> clients);
-    public void addNewClient(Client newClient);
-    public Context getAppContext();
-    void readClientSuccessEvent(Client client);
-    void updateClientSuccessEvent(int id);
+    void loadClientListSuccess(ArrayList<Client> clients);
+    Context getAppContext();
+    void deleteClientSuccess();
+
 }

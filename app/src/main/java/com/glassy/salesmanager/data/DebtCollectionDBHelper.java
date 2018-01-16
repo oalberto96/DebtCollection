@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.glassy.salesmanager.Client.Client;
 
+import java.util.ArrayList;
+
 /**
  * Created by glassy on 12/17/17.
  */
@@ -116,5 +118,35 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         return client;
     }
 
+    public void deleteClient(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String SQLScript = "DELETE FROM " + DebtCollectionContract.Client.TABLE_NAME +
+                " WHERE _id = " + id;
+        db.execSQL(SQLScript);
+        db.close();
+    }
+
+    public ArrayList<Client> getClients(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Client> clients = new ArrayList<Client>();
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Client.TABLE_NAME+";";
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            while (cursor.moveToNext()){
+                clients.add(new Client(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Client._ID)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_FIRST_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_LAST_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_ADDRESS)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_PHONE_NUMBER)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_NOTES)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Client.COLUMN_TIN))
+                ));
+            }
+        }
+        db.close();
+        return clients;
+    }
 
 }

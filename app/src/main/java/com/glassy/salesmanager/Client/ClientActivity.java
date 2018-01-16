@@ -20,9 +20,9 @@ import com.glassy.salesmanager.UI.ClientAdapter;
 import java.util.ArrayList;
 
 public class ClientActivity extends AppCompatActivity implements ClientView, ClientAdapter.ListItemClickListener{
+
     private ClientPresenter presenter;
     private ClientAdapter clientAdapter;
-    private RecyclerView clientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new ClientPresenter(this);
-
     }
 
     public void onClickbtnNewClient(View view){
@@ -45,21 +44,13 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 1 && resultCode == RESULT_OK){
-            presenter.loadClients();
-        }
-    }
-
-
-    @Override
-    public void loadListClient(ArrayList<Client> clients) {
-        clientList = (RecyclerView) findViewById(R.id.rv_clients);
+    public void initRecyclerView(ArrayList<Client> clients) {
+        RecyclerView rv_clientList = (RecyclerView) findViewById(R.id.rv_clients);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        clientList.setLayoutManager(layoutManager);
-        clientList.setHasFixedSize(true);
+        rv_clientList.setLayoutManager(layoutManager);
+        rv_clientList.setHasFixedSize(true);
         clientAdapter = new ClientAdapter(clients, this);
-        clientList.setAdapter(clientAdapter);
+        rv_clientList.setAdapter(clientAdapter);
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -71,8 +62,35 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
                 int id = (int) viewHolder.itemView.getTag();
                 showDeleteSnackbar(id);
             }
-        }).attachToRecyclerView(clientList);
+        }).attachToRecyclerView(rv_clientList);
     }
+
+    @Override
+    public void onItemClickListener(int id) {
+        Intent intent = new Intent(
+                this,
+                ReadClientActivity.class);
+        intent.putExtra("clientId",id);
+        startActivity(intent);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void refreshRecyclerView() {
+        clientAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            presenter.loadClients();
+        }
+    }
+
 
     public void showDeleteSnackbar(final int id){
         presenter.addItemToList(id);
@@ -93,22 +111,8 @@ public class ClientActivity extends AppCompatActivity implements ClientView, Cli
             }
         }).show();
     }
-    @Override
-    public void readClient(Client client) {
 
-    }
 
-    @Override
-    public Context getContext() {
-        return this;
-    }
 
-    @Override
-    public void onItemClickListener(int id) {
-        Intent intent = new Intent(
-                this,
-                ReadClientActivity.class);
-        intent.putExtra("clientId",id);
-        startActivity(intent);
-    }
+
 }

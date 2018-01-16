@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 public interface ClientView {
-    public void loadListClient(ArrayList<Client> clients);
-    public void readClient(Client client);
-    public Context getContext();
+    void initRecyclerView(ArrayList<Client> clients);
+    Context getContext();
+    void refreshRecyclerView();
 }
