@@ -11,14 +11,20 @@ import java.util.ArrayList;
  */
 
 public interface ProductEvents {
-    void loadProductsList(ArrayList<Product> products);
-    void addNewProduct(Product newProduct);
-    void addNewProductSuccess();
-    Context getContext();
 
-    void loadProductSuccess(Product product);
+    void loadProducts();
 
-    void updateProduct(Product product);
+    void loadProductsListSuccess(ArrayList<Product> products);
 
-    void updateProductSuccess();
+    void addItemToList(int id);
+
+    void deleteItemFromList();
+
+    void loadProductList();
+
+    void cleanList();
+
+    void deleteProductSuccess();
+
+    Context getAppContext();
 }

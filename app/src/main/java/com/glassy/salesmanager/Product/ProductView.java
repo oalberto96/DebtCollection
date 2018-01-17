@@ -11,11 +11,8 @@ import java.util.ArrayList;
  */
 
 public interface ProductView {
-    void loadProductsList(ArrayList<Product> products);
-    void readProduct(Product product);
-    Context getContext();
 
-    void loadProduct(Product product);
-
-    void updateProductSuccess();
+    void initRecyclerView(ArrayList<Product> products);
+    void refreshRecyclerView();
+    Context getAppContext();
 }

@@ -9,78 +9,76 @@ import java.util.ArrayList;
  */
 
 public class ProductPresenter implements ProductEvents {
+
     protected final ProductModel model;
     protected final ProductView view;
+    protected ArrayList<Product> products;
+
     protected int idToDelete;
 
     public ProductPresenter(ProductView view) {
+        products = new ArrayList<>();
         this.view = view;
         this.model = new ProductModel(this);
-        model.loadProductsList();
+        this.view.initRecyclerView(this.products);
+        model.loadProducts();
         idToDelete = -1;
     }
 
-    public void loadProductList(){
-        model.loadProductsList();
+    public void loadProducts(){
+        model.loadProducts();
     }
 
     @Override
-    public void loadProductsList(ArrayList<Product> products) {
-        view.loadProductsList(products);
-    }
-
-    @Override
-    public void addNewProduct(Product newProduct) {
-        model.createProduct(newProduct);
-    }
-
-    public void deleteClient(int id){
-        model.deleteClient(id);
-    }
-
-    @Override
-    public void addNewProductSuccess() {
-        model.loadProductsList();
-    }
-
-
-    @Override
-    public Context getContext() {
-        return view.getContext();
-    }
-
-    @Override
-    public void loadProductSuccess(Product product) {
-        view.loadProduct(product);
-    }
-
-    @Override
-    public void updateProduct(Product product) {
-        model.updateProduct(product);
-    }
-
-    @Override
-    public void updateProductSuccess() {
-        view.updateProductSuccess();
-    }
-
-    public void getProduct(int id) {
-        model.getProduct(id);
-    }
-
-
     public void addItemToList(int id) {
         idToDelete = id;
-
     }
 
+    @Override
     public void deleteItemFromList() {
         idToDelete = -1;
     }
 
+    @Override
+    public void loadProductList() {
+        model.loadProducts();
+    }
+
+    @Override
     public void cleanList() {
         if (idToDelete >= 0){
-            deleteClient(idToDelete);
+            deleteProduct(idToDelete);
+            deleteItemFromList();
         }
     }
+
+    @Override
+    public void loadProductsListSuccess(ArrayList<Product> products) {
+        if(products.size()>0){
+            this.products.clear();
+            this.products.addAll(products);
+            view.refreshRecyclerView();
+        }
+    }
+
+    public void deleteProduct(int id){
+        model.deleteProduct(id);
+    }
+
+    @Override
+    public void deleteProductSuccess() {
+        model.loadProducts();
+    }
+
+    @Override
+    public Context getAppContext() {
+        return view.getAppContext();
+    }
+
+
+
+
+
+
+
 }

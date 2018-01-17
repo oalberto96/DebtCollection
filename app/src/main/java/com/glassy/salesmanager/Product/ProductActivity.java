@@ -20,38 +20,33 @@ import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity implements ProductView, ProductAdapter.ListItemClickListener{
     ProductAdapter productAdapter;
-    RecyclerView productList;
-
-    ProductPresenter presenter;
+    ProductEvents presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
         presenter = new ProductPresenter(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            presenter.loadProducts();
+        }
     }
 
     public void onClickbtnNewProduct(View view){
         Intent intent = new Intent(
                 getApplicationContext(),
                 AddProductActivity.class);
-        intent.putExtra("mode","CREATE");
         startActivityForResult(intent,1);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 1 && resultCode == RESULT_OK){
-            //Product product = data.getParcelableExtra("newProduct");
-            //presenter.addNewProduct(product);
-        }
-        if (requestCode == 3 && resultCode == RESULT_OK){
-        }
-    }
-
-    @Override
-    public void loadProductsList(ArrayList<Product> products) {
-        productList = (RecyclerView) findViewById(R.id.rv_products);
+    public void initRecyclerView(ArrayList<Product> products) {
+        RecyclerView productList = (RecyclerView) findViewById(R.id.rv_products);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         productList.setLayoutManager(layoutManager);
         productList.setHasFixedSize(true);
@@ -70,6 +65,24 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
             }
         }).attachToRecyclerView(productList);
     }
+
+    @Override
+    public void onItemClickListener(int id) {
+        Intent intent = new Intent(this,ReadProductActivity.class);
+        intent.putExtra("productId",id);
+        startActivityForResult(intent,3);
+    }
+
+    @Override
+    public void refreshRecyclerView() {
+        productAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public Context getAppContext() {
+        return this;
+    }
+
 
     private void showDeleteSnackbar(int id) {
         presenter.addItemToList(id);
@@ -91,30 +104,7 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
         }).show();
     }
 
-    @Override
-    public void readProduct(Product product) {
 
-    }
 
-    @Override
-    public Context getContext() {
-        return this;
-    }
 
-    @Override
-    public void loadProduct(Product product) {
-
-    }
-
-    @Override
-    public void updateProductSuccess() {
-
-    }
-
-    @Override
-    public void onItemClickListener(int id) {
-        Intent intent = new Intent(this,ReadProductActivity.class);
-        intent.putExtra("productId",id);
-        startActivityForResult(intent,3);
-    }
 }

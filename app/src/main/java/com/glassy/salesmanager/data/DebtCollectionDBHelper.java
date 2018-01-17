@@ -192,4 +192,35 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         db.close();
         return product;
     }
+
+    public ArrayList<Product> getProducts(){
+        ArrayList<Product> products = new ArrayList<Product>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Product.TABLE_NAME+";";
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.getCount() > 0){
+            while (cursor.moveToNext()){
+                products.add(new Product(
+                        cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Product._ID)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_NAME)),
+                        cursor.getFloat(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_PRICE)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_COLOR)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_SIZE)),
+                        cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_MATERIAL))
+                ));
+            }
+        }
+        db.close();
+        return products;
+    }
+
+
+    public void deleteProduct(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String SQLScript = "DELETE FROM " + DebtCollectionContract.Product.TABLE_NAME +
+                " WHERE _id = " + id;
+        db.execSQL(SQLScript);
+        db.close();
+    }
 }
