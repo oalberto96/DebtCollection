@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
@@ -26,6 +27,10 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
+        Toolbar actionbar = (Toolbar) findViewById(R.id.my_action_bar);
+        setSupportActionBar(actionbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new ProductPresenter(this);
     }

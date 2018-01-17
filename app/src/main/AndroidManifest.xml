@@ -37,14 +37,38 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Client.ReadClient.ReadClientActivity" />
         </activity>
-        <activity android:name=".Client.ReadClient.ReadClientActivity" />
+        <activity android:name=".Client.ReadClient.ReadClientActivity"
+            android:parentActivityName=".Client.ClientActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Client.ClientActivity" />
+        </activity>
         <activity android:name=".Product.ProductActivity" />
+
+        <activity android:name=".Product.EditProduct.EditProductActivity"
+            android:parentActivityName=".Product.ReadProduct.ReadProductActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Product.ReadProduct.ReadProductActivity" />
+        </activity>
+
+        <activity android:name=".Product.AddProduct.AddProductActivity"
+            android:parentActivityName=".Product.ProductActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Product.ProductActivity" />
+        </activity>
+
+        <activity android:name=".Product.ReadProduct.ReadProductActivity"
+            android:parentActivityName=".Product.ProductActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Product.ProductActivity" />
+        </activity>
+
         <activity android:name=".Sale.SaleActivity" />
-        <activity android:name=".Product.AddProduct.AddProductActivity" />
         <activity android:name=".Sale.AddSaleActivity" />
-        <activity android:name=".Product.ReadProduct.ReadProductActivity" />
         <activity android:name=".Stats.StatsActivity" />
-        <activity android:name=".Product.EditProduct.EditProductActivity"></activity>
     </application>
 
 </manifest>

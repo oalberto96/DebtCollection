@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,6 +32,10 @@ public class ReadProductActivity extends AppCompatActivity implements IReadProdu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_product);
+
+        Toolbar actionbar = (Toolbar) findViewById(R.id.my_action_bar);
+        setSupportActionBar(actionbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvProductName = (TextView) findViewById(R.id.tv_product_name);
         tvProductPrice = (TextView) findViewById(R.id.tv_product_price);

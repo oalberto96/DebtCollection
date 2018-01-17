@@ -38,6 +38,8 @@ public class AddClientActivity extends AppCompatActivity implements IAddClientAc
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.my_action_bar);
         setSupportActionBar(actionbar);
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new AddClientActivityPresenter(this);

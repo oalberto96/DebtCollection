@@ -9,8 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/padding_screen"
         tools:context="com.glassy.salesmanager.Product.ReadProduct.ReadProductActivity">
+
+        <include android:id="@+id/my_action_bar"
+            layout="@layout/actionbar">
+        </include>
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/cv_client_name"

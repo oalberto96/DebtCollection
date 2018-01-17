@@ -66,8 +66,6 @@ public class ReadClientActivity extends AppCompatActivity implements IReadClient
         return super.onOptionsItemSelected(item);
     }
 
-
-
     public void getClientData(){
         Intent intent = getIntent();
         int clientId = intent.getIntExtra("clientId",0);
