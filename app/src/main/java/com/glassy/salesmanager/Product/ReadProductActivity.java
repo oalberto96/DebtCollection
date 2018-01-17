@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.glassy.salesmanager.Product.AddProduct.AddProductActivity;
+import com.glassy.salesmanager.Product.EditProduct.EditProductActivity;
 import com.glassy.salesmanager.R;
 
 import java.util.ArrayList;
@@ -88,8 +89,7 @@ public class ReadProductActivity extends AppCompatActivity implements ProductVie
     }
 
     public void onClickbtnEditProduct(View view){
-        Intent intent = new Intent(this, AddProductActivity.class);
-        intent.putExtra("mode", "UPDATE");
+        Intent intent = new Intent(this, EditProductActivity.class);
         intent.putExtra("productId", product.getId());
         startActivityForResult(intent,1);
     }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.glassy.salesmanager.Client.Client;
+import com.glassy.salesmanager.Product.Product;
 
 import java.util.ArrayList;
 
@@ -157,5 +158,38 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(DebtCollectionContract.Product.TABLE_NAME,null,contentValues);
         db.close();
+    }
+
+    public void updateProduct(int productId, ContentValues contentValues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(DebtCollectionContract.Product.TABLE_NAME,
+                contentValues,
+                DebtCollectionContract.Client._ID + "=" + productId,
+                null);
+        db.close();
+    }
+
+
+    public Product getProduct(int productId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Product product = null;
+        String query = "SELECT * FROM " +
+                DebtCollectionContract.Product.TABLE_NAME +
+                " WHERE " +
+                DebtCollectionContract.Product._ID + " = " + productId;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToNext();
+            product = new Product(
+                    cursor.getInt(cursor.getColumnIndex(DebtCollectionContract.Product._ID)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_NAME)),
+                    cursor.getFloat(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_PRICE)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_COLOR)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_SIZE)),
+                    cursor.getString(cursor.getColumnIndex(DebtCollectionContract.Product.COLUMN_MATERIAL))
+            );
+        }
+        db.close();
+        return product;
     }
 }

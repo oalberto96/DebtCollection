@@ -97,4 +97,23 @@ public class Product implements Parcelable {
     }
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
 }

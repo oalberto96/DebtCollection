@@ -12,6 +12,5 @@ interface IAddProductPresenter {
 
     Context getActivityContext();
     void insertProduct(Product product);
-
     void insertProductSuccess();
 }
