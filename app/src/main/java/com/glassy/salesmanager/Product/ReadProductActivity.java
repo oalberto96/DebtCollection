@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.glassy.salesmanager.Product.AddProduct.AddProductActivity;
 import com.glassy.salesmanager.R;
 
 import java.util.ArrayList;

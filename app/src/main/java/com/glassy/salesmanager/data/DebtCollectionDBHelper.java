@@ -79,6 +79,8 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    /* Clients */
+
     public void insertClient(ContentValues clientContentValues){
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(DebtCollectionContract.Client.TABLE_NAME,null,clientContentValues);
@@ -149,4 +151,11 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         return clients;
     }
 
+    /* Products */
+
+    public void insertProduct(ContentValues contentValues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(DebtCollectionContract.Product.TABLE_NAME,null,contentValues);
+        db.close();
+    }
 }

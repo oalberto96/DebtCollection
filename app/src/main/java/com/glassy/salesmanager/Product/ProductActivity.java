@@ -10,8 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Toast;
 
+import com.glassy.salesmanager.Product.AddProduct.AddProductActivity;
 import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ProductAdapter;
 
@@ -41,8 +41,8 @@ public class ProductActivity extends AppCompatActivity implements ProductView, P
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1 && resultCode == RESULT_OK){
-            Product product = data.getParcelableExtra("newProduct");
-            presenter.addNewProduct(product);
+            //Product product = data.getParcelableExtra("newProduct");
+            //presenter.addNewProduct(product);
         }
         if (requestCode == 3 && resultCode == RESULT_OK){
         }
