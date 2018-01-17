@@ -42,7 +42,7 @@
         <activity android:name=".Sale.SaleActivity" />
         <activity android:name=".Product.AddProduct.AddProductActivity" />
         <activity android:name=".Sale.AddSaleActivity" />
-        <activity android:name=".Product.ReadProductActivity" />
+        <activity android:name=".Product.ReadProduct.ReadProductActivity" />
         <activity android:name=".Stats.StatsActivity" />
         <activity android:name=".Product.EditProduct.EditProductActivity"></activity>
     </application>

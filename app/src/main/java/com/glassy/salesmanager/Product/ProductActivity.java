@@ -12,6 +12,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.glassy.salesmanager.Product.AddProduct.AddProductActivity;
+import com.glassy.salesmanager.Product.ReadProduct.ReadProductActivity;
 import com.glassy.salesmanager.R;
 import com.glassy.salesmanager.UI.ProductAdapter;
 

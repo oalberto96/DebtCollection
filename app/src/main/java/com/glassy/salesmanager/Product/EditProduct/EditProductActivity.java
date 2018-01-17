@@ -70,6 +70,8 @@ public class EditProductActivity extends AppCompatActivity implements IEditProdu
 
     @Override
     public void updateProductSuccess() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK,intent);
         onBackPressed();
     }
 }

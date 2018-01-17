@@ -1,4 +1,4 @@
-package com.glassy.salesmanager.Product;
+package com.glassy.salesmanager.Product.ReadProduct;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 
 import com.glassy.salesmanager.Product.AddProduct.AddProductActivity;
 import com.glassy.salesmanager.Product.EditProduct.EditProductActivity;
+import com.glassy.salesmanager.Product.Product;
+import com.glassy.salesmanager.Product.ProductPresenter;
+import com.glassy.salesmanager.Product.ProductView;
 import com.glassy.salesmanager.R;
 
 import java.util.ArrayList;
 
-public class ReadProductActivity extends AppCompatActivity implements ProductView {
+public class ReadProductActivity extends AppCompatActivity implements IReadProductView {
 
-    ProductPresenter presenter;
+    IReadProductPresenter presenter;
     Product product;
 
     TextView tvProductName;
@@ -35,51 +38,26 @@ public class ReadProductActivity extends AppCompatActivity implements ProductVie
         tvProductSize = (TextView) findViewById(R.id.tv_product_size);
         tvProductMaterial = (TextView) findViewById(R.id.tv_product_material);
 
-        presenter = new ProductPresenter(this);
+        presenter = new ReadProductPresenter(this);
 
-        getExtraMessages();
+        getProductData();
     }
 
-    private void getExtraMessages(){
+    private void getProductData(){
         Intent intent = getIntent();
-        int id = intent.getIntExtra("productId",0);
-        presenter.getProduct(id);
+        int productId = intent.getIntExtra("productId",0);
+        presenter.getProduct(productId);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 1 && resultCode == RESULT_OK){
-            Product product = data.getParcelableExtra("PRODUCT");
-            fillForm(product);
+            getProductData();
         }
     }
 
     @Override
-    public void loadProductsList(ArrayList<Product> products) {
-
-    }
-
-    @Override
-    public void readProduct(Product product) {
-
-    }
-
-    @Override
-    public Context getContext() {
-        return this;
-    }
-
-    @Override
-    public void loadProduct(Product product) {
-        fillForm(product);
-    }
-
-    @Override
-    public void updateProductSuccess() {
-
-    }
-
-    private void fillForm(Product product) {
+    public void fillForm(Product product) {
         this.product = product;
         tvProductName.setText(product.getName());
         tvProductPrice.setText(String.valueOf(product.getPrice()));
@@ -92,5 +70,10 @@ public class ReadProductActivity extends AppCompatActivity implements ProductVie
         Intent intent = new Intent(this, EditProductActivity.class);
         intent.putExtra("productId", product.getId());
         startActivityForResult(intent,1);
+    }
+
+    @Override
+    public Context getActivityContext() {
+        return this;
     }
 }
