@@ -71,13 +71,5 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/product_material" />
         </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/btn_new_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickbtnAddNewProduct"
-            android:text="@string/btn_update_product" />
-
     </LinearLayout>
 </ScrollView>

@@ -43,7 +43,7 @@ public class AddProductActivity extends AppCompatActivity implements IAddProduct
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.option_menu_done:
-                //onClickbtnAddClient();
+                onClickbtnAddNewProduct();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -70,7 +70,7 @@ public class AddProductActivity extends AppCompatActivity implements IAddProduct
         presenter = new AddProductActivityPresenter(this);
     }
 
-    public void onClickbtnAddNewProduct(View view){
+    public void onClickbtnAddNewProduct(){
         Product product = new Product(
                 productName.getText().toString(),
                 Float.parseFloat(productPrice.getText().toString()),
