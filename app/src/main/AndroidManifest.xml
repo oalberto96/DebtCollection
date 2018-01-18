@@ -60,7 +60,8 @@
         </activity>
 
         <activity android:name=".Product.ReadProduct.ReadProductActivity"
-            android:parentActivityName=".Product.ProductActivity">
+            android:parentActivityName=".Product.ProductActivity"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Product.ProductActivity" />
