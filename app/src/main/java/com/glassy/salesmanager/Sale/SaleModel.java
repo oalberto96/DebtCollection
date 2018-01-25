@@ -167,14 +167,6 @@ public class SaleModel {
     }
 
 
-    public void saleProduct(Sale sale) {
-        //Sql
-    }
-
-    public void deleteClient(int id) {
-        //sql
-    }
-
     public Product getProduct(int id){
         db = dbHelper.getWritableDatabase();
         Product product = null;

@@ -12,7 +12,7 @@
         android:layout_margin="@dimen/layout_margin"
         android:orientation="vertical"
         android:id="@+id/sale_activity_layout"
-        tools:context="com.glassy.salesmanager.Sale.AddSaleActivity">
+        tools:context="com.glassy.salesmanager.Sale.AddSale.AddSaleActivity">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

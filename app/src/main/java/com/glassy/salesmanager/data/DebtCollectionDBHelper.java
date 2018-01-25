@@ -223,4 +223,32 @@ public class DebtCollectionDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQLScript);
         db.close();
     }
+
+
+    public void insertSale(ContentValues contentValues, ArrayList<Product> products, ArrayList<Integer> product_quantity) {
+        long saleId;
+        SQLiteDatabase db = this.getWritableDatabase();
+        saleId = db.insert(DebtCollectionContract.Sale.TABLE_NAME,null,contentValues);
+        insertSaleProducts(saleId,products,product_quantity);
+        db.close();
+    }
+
+    private void insertSaleProducts(long saleId, ArrayList<Product> products, ArrayList<Integer> product_quantity) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (int position = 0; position < products.size(); position++) {
+            String dbInsert = "INSERT INTO " + DebtCollectionContract.SaleProduct.TABLE_NAME + " (" +
+                    DebtCollectionContract.SaleProduct.COLUMN_SALE_ID + ", " +
+                    DebtCollectionContract.SaleProduct.COLUMN_PRODUCT_ID + ", " +
+                    DebtCollectionContract.SaleProduct.COLUMN_PRODUCT_QUANTITY +
+                    ") VALUES (" + "\"" +
+                    saleId + "\", \"" +
+                    products.get(position).getId() + "\", \"" +
+                    product_quantity.get(position) +
+                    "\");";
+            db.execSQL(dbInsert);
+        }
+        db.close();
+    }
+
+
 }

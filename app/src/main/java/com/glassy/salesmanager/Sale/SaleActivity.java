@@ -8,11 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Toast;
 
 import com.glassy.salesmanager.Client.Client;
 import com.glassy.salesmanager.Product.Product;
 import com.glassy.salesmanager.R;
+import com.glassy.salesmanager.Sale.AddSale.AddSaleActivity;
 import com.glassy.salesmanager.UI.SaleAdapter;
 
 import java.util.ArrayList;

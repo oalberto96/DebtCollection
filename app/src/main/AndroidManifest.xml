@@ -68,7 +68,7 @@
         </activity>
 
         <activity android:name=".Sale.SaleActivity" />
-        <activity android:name=".Sale.AddSaleActivity" />
+        <activity android:name=".Sale.AddSale.AddSaleActivity" />
         <activity android:name=".Stats.StatsActivity" />
     </application>
 
